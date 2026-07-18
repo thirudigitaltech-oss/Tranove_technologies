@@ -1,23 +1,21 @@
 import { useState, useEffect, useRef } from "react";
 
 const C = {
-  pink: "#D6336C",
-  pinkDeep: "#A6205A",
-  pinkSoft: "#F4A6C4",
-  blush: "#FFF3F8",
-  ink: "#3B1F2B",
-  inkMid: "#F6D8E6",
-  paper: "#FFFBFC",
-  paperMid: "#FCE9F0",
+  violet: "#5B4B9E",
+  violetDeep: "#3D2F73",
+  ink: "#12101C",
+  inkMid: "#1D1832",
+  paper: "#FAF9F7",
+  paperMid: "#F1EEF7",
   gold: "#B9975B",
-  textDark: "#3B1F2B",
-  textMuted: "#8A6373",
+  textDark: "#16141F",
+  textMuted: "#5F5A6E",
 };
 
-const gradAccent = `linear-gradient(135deg, ${C.pink}, ${C.pinkDeep})`;
-const gradInk = `linear-gradient(135deg, ${C.pinkDeep}, ${C.pink})`;
-const shadowCard = "0 1px 2px rgba(166,32,90,0.06), 0 8px 24px rgba(166,32,90,0.08)";
-const shadowMd = "0 12px 32px rgba(166,32,90,0.18)";
+const gradAccent = `linear-gradient(135deg, ${C.violet}, ${C.violetDeep})`;
+const gradInk = `linear-gradient(135deg, ${C.ink}, ${C.inkMid})`;
+const shadowCard = "0 1px 2px rgba(18,16,28,0.06), 0 8px 24px rgba(18,16,28,0.05)";
+const shadowMd = "0 12px 32px rgba(18,16,28,0.14)";
 
 const RESPONSIVE_CSS = `
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -31,7 +29,7 @@ const RESPONSIVE_CSS = `
     flex-direction: column;
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: #FFF6FA;
+    background: ${C.ink};
     z-index: 2000;
     padding: 80px 32px 40px;
     gap: 0;
@@ -42,29 +40,29 @@ const RESPONSIVE_CSS = `
     font-family: 'Fraunces', serif;
     font-size: 21px;
     font-weight: 500;
-    color: rgba(59,31,43,0.82);
+    color: rgba(255,255,255,0.82);
     text-decoration: none;
     padding: 17px 0;
-    border-bottom: 1px solid rgba(59,31,43,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
     transition: color .2s;
     display: flex;
     align-items: center;
     gap: 12px;
   }
-  .mobile-menu a:hover { color: #A6205A; }
+  .mobile-menu a:hover { color: #C9BBF0; }
   .mobile-close {
     position: absolute;
     top: 20px; right: 20px;
     width: 40px; height: 40px;
-    background: rgba(214,51,108,0.08);
-    border: 1px solid rgba(214,51,108,0.2);
-    color: #A6205A; font-size: 17px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    color: #fff; font-size: 17px;
     cursor: pointer; display: flex;
     align-items: center; justify-content: center;
   }
   .mobile-cta {
     margin-top: 26px;
-    background: ${C.pink};
+    background: ${C.violet};
     color: #fff; padding: 15px;
     font-family: 'Inter',sans-serif;
     font-size: 13px; font-weight: 600;
@@ -84,7 +82,7 @@ const RESPONSIVE_CSS = `
   }
   .hamburger span {
     display: block; width: 22px; height: 1.5px;
-    background: #3B1F2B;
+    background: ${C.ink};
   }
 
   @media (max-width: 900px) {
@@ -208,8 +206,8 @@ const techStack = [
 ];
 
 const SectionTag = ({ children }) => (
-  <span style={{ display: "inline-flex", alignItems: "center", gap: 8, color: C.pink, fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: 2.5, marginBottom: 16, fontFamily: "'Inter',sans-serif" }}>
-    <span style={{ width: 20, height: 1, background: C.pink, display: "inline-block" }} />{children}
+  <span style={{ display: "inline-flex", alignItems: "center", gap: 8, color: C.violet, fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: 2.5, marginBottom: 16, fontFamily: "'Inter',sans-serif" }}>
+    <span style={{ width: 20, height: 1, background: C.violet, display: "inline-block" }} />{children}
   </span>
 );
 
@@ -221,7 +219,7 @@ const BtnPrimary = ({ href = "#", children, style, onClick }) => {
   const [hov, setHov] = useState(false);
   return (
     <a href={href} onClick={onClick} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      style={{ background: C.pink, color: "#fff", padding: "14px 30px", fontWeight: 600, fontSize: 13, textDecoration: "none", fontFamily: "'Inter',sans-serif", letterSpacing: ".03em", textTransform: "uppercase", boxShadow: hov ? shadowMd : "none", transform: hov ? "translateY(-2px)" : "none", transition: "all .25s", display: "inline-flex", alignItems: "center", gap: 10, ...style }}>{children}</a>
+      style={{ background: C.violet, color: "#fff", padding: "14px 30px", fontWeight: 600, fontSize: 13, textDecoration: "none", fontFamily: "'Inter',sans-serif", letterSpacing: ".03em", textTransform: "uppercase", boxShadow: hov ? shadowMd : "none", transform: hov ? "translateY(-2px)" : "none", transition: "all .25s", display: "inline-flex", alignItems: "center", gap: 10, ...style }}>{children}</a>
   );
 };
 
@@ -237,13 +235,13 @@ function ServiceCard({ icon, title, desc }) {
   const [hov, setHov] = useState(false);
   return (
     <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      style={{ background: "#fff", padding: "36px 28px", border: `1px solid ${hov ? C.pink : "rgba(18,16,28,0.08)"}`, boxShadow: hov ? shadowCard : "none", transition: "all .3s", cursor: "default" }}>
-      <div style={{ width: 46, height: 46, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 19, marginBottom: 22, border: `1px solid ${C.pink}`, color: C.pink, background: hov ? C.pink : "transparent", transition: "all .3s" }}>
-        <i className={icon} style={{ color: hov ? "#fff" : C.pink, transition: "color .3s" }} />
+      style={{ background: "#fff", padding: "36px 28px", border: `1px solid ${hov ? C.violet : "rgba(18,16,28,0.08)"}`, boxShadow: hov ? shadowCard : "none", transition: "all .3s", cursor: "default" }}>
+      <div style={{ width: 46, height: 46, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 19, marginBottom: 22, border: `1px solid ${C.violet}`, color: C.violet, background: hov ? C.violet : "transparent", transition: "all .3s" }}>
+        <i className={icon} style={{ color: hov ? "#fff" : C.violet, transition: "color .3s" }} />
       </div>
       <h3 style={{ fontFamily: "'Fraunces',serif", fontSize: 18, fontWeight: 500, color: C.ink, marginBottom: 10 }}>{title}</h3>
       <p style={{ fontSize: 13, color: C.textMuted, lineHeight: 1.75, marginBottom: 18 }}>{desc}</p>
-      <a href="#contact" style={{ fontSize: 11, fontWeight: 600, color: C.pink, textDecoration: "none", fontFamily: "'Inter',sans-serif", textTransform: "uppercase", letterSpacing: "1px", display: "inline-flex", alignItems: "center", gap: 6 }}>
+      <a href="#contact" style={{ fontSize: 11, fontWeight: 600, color: C.violet, textDecoration: "none", fontFamily: "'Inter',sans-serif", textTransform: "uppercase", letterSpacing: "1px", display: "inline-flex", alignItems: "center", gap: 6 }}>
         Get Started <i className="fas fa-arrow-right" style={{ fontSize: 10 }} />
       </a>
     </div>
@@ -255,9 +253,9 @@ function PricingCard({ data }) {
   const { plan, price, period, desc, features, featured } = data;
   return (
     <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      style={{ padding: "40px 32px", position: "relative", background: featured ? gradInk : "#fff", border: `1px solid ${featured ? C.pinkDeep : "rgba(166,32,90,0.12)"}`, boxShadow: featured ? shadowMd : hov ? shadowCard : "none", transition: "all .3s" }}>
-      {featured && <span style={{ position: "absolute", top: 0, right: 0, background: C.pink, color: "#fff", fontSize: 10, fontWeight: 600, padding: "6px 14px", textTransform: "uppercase", letterSpacing: "1.5px" }}>Recommended</span>}
-      <div style={{ fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: 2.5, color: featured ? C.pinkDeep : C.pink, marginBottom: 12, fontFamily: "'Inter',sans-serif" }}>{plan}</div>
+      style={{ padding: "40px 32px", position: "relative", background: featured ? gradInk : "#fff", border: `1px solid ${featured ? C.ink : "rgba(18,16,28,0.1)"}`, boxShadow: featured ? shadowMd : hov ? shadowCard : "none", transition: "all .3s" }}>
+      {featured && <span style={{ position: "absolute", top: 0, right: 0, background: C.violet, color: "#fff", fontSize: 10, fontWeight: 600, padding: "6px 14px", textTransform: "uppercase", letterSpacing: "1.5px" }}>Recommended</span>}
+      <div style={{ fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: 2.5, color: featured ? "#C9BBF0" : C.violet, marginBottom: 12, fontFamily: "'Inter',sans-serif" }}>{plan}</div>
       <div style={{ fontFamily: "'Fraunces',serif", fontSize: 44, fontWeight: 500, color: featured ? "#fff" : C.ink, lineHeight: 1, marginBottom: 8 }}>
         {price}<small style={{ fontSize: 14, fontWeight: 400, color: featured ? "rgba(255,255,255,0.5)" : C.textMuted, fontFamily: "'Inter',sans-serif" }}>{period}</small>
       </div>
@@ -265,12 +263,12 @@ function PricingCard({ data }) {
       <ul style={{ listStyle: "none", marginBottom: 30, display: "flex", flexDirection: "column", gap: 12 }}>
         {features.map((f, i) => (
           <li key={i} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 13, color: f.ok ? (featured ? "rgba(255,255,255,0.85)" : C.textDark) : (featured ? "rgba(255,255,255,0.28)" : "rgba(18,16,28,0.3)") }}>
-            <i className={f.ok ? "fas fa-check" : "fas fa-minus"} style={{ color: f.ok ? C.pink : "inherit", fontSize: 11, width: 12 }} />
+            <i className={f.ok ? "fas fa-check" : "fas fa-minus"} style={{ color: f.ok ? C.violet : "inherit", fontSize: 11, width: 12 }} />
             {f.text}
           </li>
         ))}
       </ul>
-      <a href="#contact" style={{ display: "block", textAlign: "center", padding: "14px", fontWeight: 600, fontSize: 12, textDecoration: "none", fontFamily: "'Inter',sans-serif", textTransform: "uppercase", letterSpacing: "1px", background: featured ? C.pink : "transparent", color: featured ? "#fff" : C.ink, border: featured ? "none" : `1px solid rgba(18,16,28,0.25)` }}>Get Started</a>
+      <a href="#contact" style={{ display: "block", textAlign: "center", padding: "14px", fontWeight: 600, fontSize: 12, textDecoration: "none", fontFamily: "'Inter',sans-serif", textTransform: "uppercase", letterSpacing: "1px", background: featured ? C.violet : "transparent", color: featured ? "#fff" : C.ink, border: featured ? "none" : `1px solid rgba(18,16,28,0.25)` }}>Get Started</a>
     </div>
   );
 }
@@ -282,9 +280,9 @@ function TeamCard({ member }) {
       style={{ border: "1px solid rgba(18,16,28,0.08)", boxShadow: hov ? shadowCard : "none", transition: "all .3s" }}>
       <div style={{ position: "relative" }}>
         <div style={{ height: 220, background: C.paperMid, display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <i className={member.icon} style={{ fontSize: 64, color: C.pink, opacity: 0.35 }} />
+          <i className={member.icon} style={{ fontSize: 64, color: C.violet, opacity: 0.35 }} />
         </div>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg,transparent 45%,rgba(166,32,90,0.88) 100%)", opacity: hov ? 1 : 0, transition: "opacity .3s", display: "flex", alignItems: "flex-end", justifyContent: "center", paddingBottom: 18, gap: 10 }}>
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg,transparent 45%,rgba(18,16,28,0.82) 100%)", opacity: hov ? 1 : 0, transition: "opacity .3s", display: "flex", alignItems: "flex-end", justifyContent: "center", paddingBottom: 18, gap: 10 }}>
           {["fab fa-linkedin-in", "fas fa-envelope"].map((ic, i) => (
             <a key={i} href="#" style={{ width: 32, height: 32, background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.25)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", textDecoration: "none", fontSize: 12 }}><i className={ic} /></a>
           ))}
@@ -292,7 +290,7 @@ function TeamCard({ member }) {
       </div>
       <div style={{ padding: "20px", background: "#fff", textAlign: "center" }}>
         <h3 style={{ fontFamily: "'Fraunces',serif", fontSize: 16, fontWeight: 500, color: C.ink, marginBottom: 4 }}>{member.name}</h3>
-        <p style={{ fontSize: 11, color: C.pink, fontWeight: 600, textTransform: "uppercase", letterSpacing: 1.5, fontFamily: "'Inter',sans-serif" }}>{member.role}</p>
+        <p style={{ fontSize: 11, color: C.violet, fontWeight: 600, textTransform: "uppercase", letterSpacing: 1.5, fontFamily: "'Inter',sans-serif" }}>{member.role}</p>
       </div>
     </div>
   );
@@ -304,17 +302,17 @@ function BlogCard({ post }) {
     <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       style={{ background: "#fff", border: "1px solid rgba(18,16,28,0.08)", boxShadow: hov ? shadowCard : "none", transition: "all .3s" }}>
       <div style={{ height: 170, background: C.paperMid, position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <i className={post.icon} style={{ fontSize: 46, color: C.pink, opacity: 0.3 }} />
-        <span style={{ position: "absolute", top: 14, left: 14, background: C.pinkDeep, color: "#fff", fontSize: 10, fontWeight: 600, padding: "5px 12px", textTransform: "uppercase", letterSpacing: "1.5px" }}>{post.cat}</span>
+        <i className={post.icon} style={{ fontSize: 46, color: C.violet, opacity: 0.3 }} />
+        <span style={{ position: "absolute", top: 14, left: 14, background: C.ink, color: "#fff", fontSize: 10, fontWeight: 600, padding: "5px 12px", textTransform: "uppercase", letterSpacing: "1.5px" }}>{post.cat}</span>
       </div>
       <div style={{ padding: 22 }}>
         <div style={{ display: "flex", gap: 14, fontSize: 11, color: C.textMuted, marginBottom: 10, fontFamily: "'Inter',sans-serif" }}>
-          <span><i className="fas fa-calendar" style={{ color: C.pink, marginRight: 5 }} />{post.date}</span>
-          <span><i className="fas fa-user" style={{ color: C.pink, marginRight: 5 }} />{post.author}</span>
+          <span><i className="fas fa-calendar" style={{ color: C.violet, marginRight: 5 }} />{post.date}</span>
+          <span><i className="fas fa-user" style={{ color: C.violet, marginRight: 5 }} />{post.author}</span>
         </div>
         <h3 style={{ fontFamily: "'Fraunces',serif", fontSize: 16, fontWeight: 500, color: C.ink, lineHeight: 1.4, marginBottom: 10 }}>{post.title}</h3>
         <p style={{ fontSize: 12, color: C.textMuted, lineHeight: 1.7, marginBottom: 16 }}>{post.desc}</p>
-        <a href="#" style={{ fontSize: 11, fontWeight: 600, color: C.pink, textDecoration: "none", fontFamily: "'Inter',sans-serif", textTransform: "uppercase", letterSpacing: "1px", display: "inline-flex", alignItems: "center", gap: 6 }}>Read More <i className="fas fa-arrow-right" style={{ fontSize: 10 }} /></a>
+        <a href="#" style={{ fontSize: 11, fontWeight: 600, color: C.violet, textDecoration: "none", fontFamily: "'Inter',sans-serif", textTransform: "uppercase", letterSpacing: "1px", display: "inline-flex", alignItems: "center", gap: 6 }}>Read More <i className="fas fa-arrow-right" style={{ fontSize: 10 }} /></a>
       </div>
     </div>
   );
@@ -326,7 +324,7 @@ function Field({ label, placeholder, type, style }) {
     <div style={style}>
       <label style={{ display: "block", fontSize: 11, fontWeight: 600, color: C.ink, marginBottom: 8, textTransform: "uppercase", letterSpacing: "1.2px", fontFamily: "'Inter',sans-serif" }}>{label}</label>
       <input type={type} placeholder={placeholder} onFocus={() => setFocused(true)} onBlur={() => setFocused(false)}
-        style={{ width: "100%", padding: "12px 14px", border: `1px solid ${focused ? C.pink : "rgba(18,16,28,0.15)"}`, fontSize: 13, fontFamily: "'Inter',sans-serif", color: C.textDark, background: "#fff", outline: "none", transition: "border-color .2s" }} />
+        style={{ width: "100%", padding: "12px 14px", border: `1px solid ${focused ? C.violet : "rgba(18,16,28,0.15)"}`, fontSize: 13, fontFamily: "'Inter',sans-serif", color: C.textDark, background: "#fff", outline: "none", transition: "border-color .2s" }} />
     </div>
   );
 }
@@ -393,10 +391,10 @@ export default function TranovaDigital() {
           <i className="fas fa-times" />
         </button>
         <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 32 }}>
-          <div style={{ width: 40, height: 40, background: C.pink, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Fraunces',serif", fontSize: 19, fontWeight: 500, color: "#fff" }}>T</div>
+          <div style={{ width: 40, height: 40, background: C.violet, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Fraunces',serif", fontSize: 19, fontWeight: 500, color: "#fff" }}>T</div>
           <div style={{ lineHeight: 1.1 }}>
-            <div style={{ fontFamily: "'Fraunces',serif", fontSize: 18, fontWeight: 500, color: C.textDark }}>Tranova</div>
-            <div style={{ fontSize: 9, color: C.pinkDeep, textTransform: "uppercase", letterSpacing: 2.5, fontWeight: 600 }}>Digital Technologies</div>
+            <div style={{ fontFamily: "'Fraunces',serif", fontSize: 18, fontWeight: 500, color: "#fff" }}>Tranova</div>
+            <div style={{ fontSize: 9, color: "#C9BBF0", textTransform: "uppercase", letterSpacing: 2.5, fontWeight: 600 }}>Digital Technologies</div>
           </div>
         </div>
         {["About", "Services", "Pricing", "Team", "Blog", "Contact"].map(item => (
@@ -405,39 +403,39 @@ export default function TranovaDigital() {
         <a href="#contact" className="mobile-cta" onClick={() => setMobileOpen(false)}>Start a Project</a>
         <div style={{ display: "flex", gap: 10, marginTop: 26, justifyContent: "center" }}>
           {["fab fa-linkedin-in","fab fa-twitter","fab fa-instagram","fab fa-whatsapp"].map((ic,i) => (
-            <a key={i} href="#" style={{ width: 36, height: 36, border: "1px solid rgba(214,51,108,0.2)", display: "flex", alignItems: "center", justifyContent: "center", color: C.pinkDeep, fontSize: 13, textDecoration: "none" }}><i className={ic} /></a>
+            <a key={i} href="#" style={{ width: 36, height: 36, border: "1px solid rgba(255,255,255,0.14)", display: "flex", alignItems: "center", justifyContent: "center", color: "rgba(255,255,255,0.55)", fontSize: 13, textDecoration: "none" }}><i className={ic} /></a>
           ))}
         </div>
       </div>
 
       {/* ── TOP BAR ── */}
-      <div className="topbar" style={{ background: C.pinkDeep, color: "rgba(255,255,255,0.75)", fontSize: 12, padding: "8px 0", width: "100%" }}>
+      <div className="topbar" style={{ background: C.ink, color: "rgba(255,255,255,0.55)", fontSize: 12, padding: "8px 0", width: "100%" }}>
         <div style={{ maxWidth: 1200, margin: "auto", padding: "0 24px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 8, fontFamily: "'Inter',sans-serif" }}>
           <div>
-            <i className="fas fa-phone-alt" style={{ color: "#fff", marginRight: 6 }} />+91 8897XXXXXX &nbsp;&nbsp;
-            <i className="fas fa-envelope" style={{ color: "#fff", marginRight: 6 }} />hello@tranovadigital.com
+            <i className="fas fa-phone-alt" style={{ color: "#C9BBF0", marginRight: 6 }} />+91 8897XXXXXX &nbsp;&nbsp;
+            <i className="fas fa-envelope" style={{ color: "#C9BBF0", marginRight: 6 }} />hello@tranovadigital.com
           </div>
-          <a href="#contact" style={{ color: "#fff", textDecoration: "none", fontWeight: 600, fontSize: 11, letterSpacing: ".5px", textTransform: "uppercase" }}>Request a Proposal →</a>
+          <a href="#contact" style={{ color: "#C9BBF0", textDecoration: "none", fontWeight: 600, fontSize: 11, letterSpacing: ".5px", textTransform: "uppercase" }}>Request a Proposal →</a>
         </div>
       </div>
 
       {/* ── NAVBAR ── */}
-      <nav style={{ position: "sticky", top: 0, zIndex: 1000, background: "#fff", borderBottom: "1px solid rgba(166,32,90,0.1)", boxShadow: scrolled ? shadowCard : "none", transition: "all .3s", width: "100%" }}>
+      <nav style={{ position: "sticky", top: 0, zIndex: 1000, background: C.ink, borderBottom: "1px solid rgba(255,255,255,0.08)", boxShadow: scrolled ? "0 4px 24px rgba(18,16,28,0.3)" : "none", transition: "all .3s", width: "100%" }}>
         <div style={{ maxWidth: 1200, margin: "auto", padding: "0 20px", display: "flex", justifyContent: "space-between", alignItems: "center", height: 72 }}>
           <a href="#" style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none" }}>
-            <div style={{ width: 38, height: 38, background: C.pink, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Fraunces',serif", fontSize: 18, fontWeight: 500, color: "#fff" }}>T</div>
+            <div style={{ width: 38, height: 38, background: C.violet, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Fraunces',serif", fontSize: 18, fontWeight: 500, color: "#fff" }}>T</div>
             <div style={{ lineHeight: 1.15 }}>
-              <div style={{ fontFamily: "'Fraunces',serif", fontSize: 19, fontWeight: 500, color: C.textDark, letterSpacing: "-0.2px" }}>Tranova</div>
-              <div style={{ fontSize: 9, color: C.pinkDeep, textTransform: "uppercase", letterSpacing: 2.5, fontWeight: 600 }}>Digital Technologies</div>
+              <div style={{ fontFamily: "'Fraunces',serif", fontSize: 19, fontWeight: 500, color: "#fff", letterSpacing: "-0.2px" }}>Tranova</div>
+              <div style={{ fontSize: 9, color: "#C9BBF0", textTransform: "uppercase", letterSpacing: 2.5, fontWeight: 600 }}>Digital Technologies</div>
             </div>
           </a>
 
           <div className="nav-desktop-links" style={{ display: "flex", gap: 30 }}>
             {["About","Services","Pricing","Team","Blog","Contact"].map(item => (
               <a key={item} href={`#${item.toLowerCase()}`}
-                style={{ fontSize: 13, fontWeight: 500, color: C.textMuted, textDecoration: "none", transition: "color .2s", fontFamily: "'Inter',sans-serif", textTransform: "uppercase", letterSpacing: ".8px" }}
-                onMouseEnter={e => e.target.style.color = C.pink}
-                onMouseLeave={e => e.target.style.color = C.textMuted}>{item}</a>
+                style={{ fontSize: 13, fontWeight: 500, color: "rgba(255,255,255,0.75)", textDecoration: "none", transition: "color .2s", fontFamily: "'Inter',sans-serif", textTransform: "uppercase", letterSpacing: ".8px" }}
+                onMouseEnter={e => e.target.style.color = "#fff"}
+                onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.75)"}>{item}</a>
             ))}
           </div>
 
@@ -446,47 +444,47 @@ export default function TranovaDigital() {
           </div>
 
           <button className="hamburger" onClick={() => setMobileOpen(true)} aria-label="Open menu">
-            <span style={{ background: C.textDark }} />
-            <span style={{ background: C.textDark }} />
-            <span style={{ background: C.textDark }} />
+            <span style={{ background: "#fff" }} />
+            <span style={{ background: "#fff" }} />
+            <span style={{ background: "#fff" }} />
           </button>
         </div>
       </nav>
 
       {/* ── HERO ── */}
-      <section id="home" style={{ position: "relative", minHeight: "88vh", display: "flex", alignItems: "center", background: `linear-gradient(160deg, #FFF9FB 0%, ${C.paperMid} 100%)`, overflow: "hidden", width: "100%" }}>
+      <section id="home" style={{ position: "relative", minHeight: "88vh", display: "flex", alignItems: "center", background: C.ink, overflow: "hidden", width: "100%" }}>
         <div className="hero-grid" style={{ maxWidth: 1200, margin: "auto", padding: "90px 24px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 70, alignItems: "center", position: "relative", zIndex: 2, width: "100%" }}>
           <div>
             <SectionTag>Hyderabad · Full-Service Digital Partner</SectionTag>
-            <h1 className="hero-title" style={{ fontFamily: "'Fraunces',serif", fontSize: "clamp(32px,4vw,54px)", fontWeight: 500, color: C.textDark, lineHeight: 1.15, marginBottom: 22, letterSpacing: "-0.5px" }}>
-              Considered digital work,<br />built to <span style={{ fontStyle: "italic", color: C.pink }}>compound</span>
+            <h1 className="hero-title" style={{ fontFamily: "'Fraunces',serif", fontSize: "clamp(32px,4vw,54px)", fontWeight: 500, color: "#fff", lineHeight: 1.15, marginBottom: 22, letterSpacing: "-0.5px" }}>
+              Considered digital work,<br />built to <span style={{ fontStyle: "italic", color: "#C9BBF0" }}>compound</span>
             </h1>
-            <p style={{ fontSize: 15, color: C.textMuted, lineHeight: 1.8, marginBottom: 32, maxWidth: 440 }}>
+            <p style={{ fontSize: 15, color: "rgba(255,255,255,0.6)", lineHeight: 1.8, marginBottom: 32, maxWidth: 440 }}>
               From mobile and web platforms to applied AI and growth marketing — Tranova delivers end-to-end technology and brand programmes under one roof.
             </p>
             <div className="hero-btns" style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
               <BtnPrimary href="#services">Explore Services</BtnPrimary>
-              <BtnOutline href="#about" dark>Our Approach</BtnOutline>
+              <BtnOutline href="#about">Our Approach</BtnOutline>
             </div>
 
-            <div style={{ display: "flex", gap: 0, marginTop: 40, borderTop: "1px solid rgba(166,32,90,0.15)", paddingTop: 24, flexWrap: "wrap" }}>
+            <div style={{ display: "flex", gap: 0, marginTop: 40, borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: 24, flexWrap: "wrap" }}>
               {[["50+","Projects"],["200+","Clients"],["3+","Years"]].map(([n,l], i) => (
-                <div key={l} style={{ paddingRight: 28, marginRight: 28, borderRight: i < 2 ? "1px solid rgba(166,32,90,0.15)" : "none" }}>
-                  <div style={{ fontFamily: "'Fraunces',serif", fontSize: 24, fontWeight: 500, color: C.pinkDeep }}>{n}</div>
-                  <div style={{ fontSize: 11, color: C.textMuted, marginTop: 3, textTransform: "uppercase", letterSpacing: "1px" }}>{l}</div>
+                <div key={l} style={{ paddingRight: 28, marginRight: 28, borderRight: i < 2 ? "1px solid rgba(255,255,255,0.1)" : "none" }}>
+                  <div style={{ fontFamily: "'Fraunces',serif", fontSize: 24, fontWeight: 500, color: "#fff" }}>{n}</div>
+                  <div style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", marginTop: 3, textTransform: "uppercase", letterSpacing: "1px" }}>{l}</div>
                 </div>
               ))}
             </div>
           </div>
 
           <div className="hero-visual" style={{ position: "relative" }}>
-            <div style={{ border: "1px solid rgba(166,32,90,0.15)" }}>
-              <div style={{ width: "100%", height: 380, background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16 }}>
-                <i className="fas fa-city" style={{ fontSize: 80, color: C.pinkSoft }} />
-                <p style={{ color: C.textMuted, fontSize: 12, fontFamily: "'Inter',sans-serif", letterSpacing: ".5px" }}>Tranova Team at Work</p>
+            <div style={{ border: "1px solid rgba(255,255,255,0.12)" }}>
+              <div style={{ width: "100%", height: 380, background: C.inkMid, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16 }}>
+                <i className="fas fa-city" style={{ fontSize: 80, color: "rgba(201,187,240,0.25)" }} />
+                <p style={{ color: "rgba(255,255,255,0.3)", fontSize: 12, fontFamily: "'Inter',sans-serif", letterSpacing: ".5px" }}>Tranova Team at Work</p>
               </div>
             </div>
-            <div style={{ position: "absolute", bottom: -1, left: -1, right: -1, background: C.pink, padding: "16px 22px", display: "flex", alignItems: "center", gap: 14 }}>
+            <div style={{ position: "absolute", bottom: -1, left: -1, right: -1, background: C.violet, padding: "16px 22px", display: "flex", alignItems: "center", gap: 14 }}>
               <i className="fas fa-star" style={{ color: "#fff", fontSize: 16 }} />
               <div>
                 <strong style={{ display: "block", fontFamily: "'Fraunces',serif", fontSize: 16, fontWeight: 500, color: "#fff" }}>50+ Projects Delivered</strong>
@@ -501,7 +499,7 @@ export default function TranovaDigital() {
       <div ref={statsRef} className="stats-row" style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "grid", gridTemplateColumns: "repeat(4,1fr)", position: "relative", zIndex: 10 }}>
         {stats.map((s, i) => (
           <div key={i} className="stat-box" style={{ background: "#fff", padding: "30px 20px", textAlign: "center", borderRight: i < 3 ? "1px solid rgba(18,16,28,0.08)" : "none", borderBottom: "1px solid rgba(18,16,28,0.08)" }}>
-            <i className={s.icon} style={{ fontSize: 20, color: C.pink, marginBottom: 10, display: "block" }} />
+            <i className={s.icon} style={{ fontSize: 20, color: C.violet, marginBottom: 10, display: "block" }} />
             <div style={{ fontFamily: "'Fraunces',serif", fontSize: 28, fontWeight: 500, color: C.ink, lineHeight: 1, marginBottom: 6 }}>
               {i===3?(counted?"24/7":"0"):(counted?counts[i]+"+":"0+")}
             </div>
@@ -517,7 +515,7 @@ export default function TranovaDigital() {
           <div style={{ display: "flex", gap: 34, alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
             {["GrabzoMart","RealEstate CRM","PayrollPro","DigitalLeads","AppStudio","TechBrand"].map(name => (
               <span key={name} style={{ fontFamily: "'Fraunces',serif", fontSize: 16, fontWeight: 500, color: "rgba(18,16,28,0.28)", letterSpacing: "-0.2px", cursor: "default", transition: "color .3s" }}
-                onMouseEnter={e => e.target.style.color = C.pink}
+                onMouseEnter={e => e.target.style.color = C.violet}
                 onMouseLeave={e => e.target.style.color = "rgba(18,16,28,0.28)"}>{name}</span>
             ))}
           </div>
@@ -530,27 +528,27 @@ export default function TranovaDigital() {
           <div className="about-img-col" style={{ position: "relative" }}>
             <div style={{ border: "1px solid rgba(18,16,28,0.1)" }}>
               <div style={{ width: "100%", height: 420, background: C.paperMid, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <i className="fas fa-handshake" style={{ fontSize: 90, color: C.pink, opacity: 0.25 }} />
+                <i className="fas fa-handshake" style={{ fontSize: 90, color: C.violet, opacity: 0.25 }} />
               </div>
             </div>
-            <div style={{ position: "absolute", bottom: -1, right: -1, background: C.pinkDeep, color: "#fff", padding: "18px 22px", textAlign: "center" }}>
+            <div style={{ position: "absolute", bottom: -1, right: -1, background: C.ink, color: "#fff", padding: "18px 22px", textAlign: "center" }}>
               <div style={{ fontFamily: "'Fraunces',serif", fontSize: 28, fontWeight: 500, lineHeight: 1 }}>3+</div>
               <div style={{ fontSize: 10, fontWeight: 500, opacity: .7, marginTop: 5, textTransform: "uppercase", letterSpacing: "1px" }}>Years of<br />Practice</div>
             </div>
           </div>
           <div>
             <SectionTag>About Tranova</SectionTag>
-            <SectionTitle>Full-service technology, <span style={{ fontStyle: "italic", color: C.pink }}>run like a studio</span></SectionTitle>
+            <SectionTitle>Full-service technology, <span style={{ fontStyle: "italic", color: C.violet }}>run like a studio</span></SectionTitle>
             <p style={{ color: C.textMuted, fontSize: 14, lineHeight: 1.85, marginBottom: 24 }}>Tranova Digital Technologies is a Hyderabad-based technology practice offering development, digital marketing, applied AI and brand building under one roof — built for founders who want a single accountable partner.</p>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, margin: "24px 0 32px" }}>
               {["Android & iOS Development","Web Platforms (React, FastAPI)","AI & Automation","Marketing & Lead Generation","PostgreSQL & Cloud Hosting","Brand & Content Strategy"].map(f => (
                 <div key={f} style={{ display: "flex", alignItems: "flex-start", gap: 10, fontSize: 13, fontWeight: 500, color: C.textDark }}>
-                  <i className="fas fa-check" style={{ color: C.pink, fontSize: 12, flexShrink: 0, marginTop: 3 }} />{f}
+                  <i className="fas fa-check" style={{ color: C.violet, fontSize: 12, flexShrink: 0, marginTop: 3 }} />{f}
                 </div>
               ))}
             </div>
             <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-              <BtnPrimary href="#services" style={{ background: C.pinkDeep }}>Our Services</BtnPrimary>
+              <BtnPrimary href="#services" style={{ background: C.ink }}>Our Services</BtnPrimary>
               <BtnOutline href="#contact" dark>Contact Us</BtnOutline>
             </div>
           </div>
@@ -562,7 +560,7 @@ export default function TranovaDigital() {
         <div style={{ maxWidth: 1200, margin: "auto", padding: "0 24px" }}>
           <div style={{ textAlign: "center", marginBottom: 54 }}>
             <SectionTag>What We Do</SectionTag>
-            <SectionTitle>A single, <span style={{ fontStyle: "italic", color: C.pink }}>accountable</span> digital partner</SectionTitle>
+            <SectionTitle>A single, <span style={{ fontStyle: "italic", color: C.violet }}>accountable</span> digital partner</SectionTitle>
             <p style={{ fontSize: 14, color: C.textMuted, lineHeight: 1.8, maxWidth: 520, margin: "0 auto" }}>Technology and marketing under one roof — no hand-offs between agencies.</p>
           </div>
           <div className="services-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 1, background: "rgba(18,16,28,0.08)" }}>
@@ -583,8 +581,8 @@ export default function TranovaDigital() {
               const [hov, setHov] = useState(false);
               return (
                 <div key={i} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-                  style={{ background: hov ? C.pink : C.paper, border: `1px solid ${hov ? C.pink : "rgba(166,32,90,0.12)"}`, color: hov ? "#fff" : C.ink, padding: "10px 18px", fontSize: 12, fontWeight: 500, display: "flex", alignItems: "center", gap: 8, transition: "all .25s", cursor: "default" }}>
-                  <i className={t.icon} style={{ color: hov ? C.pinkDeep : C.pink, fontSize: 13 }} />{t.label}
+                  style={{ background: hov ? C.ink : C.paper, border: `1px solid ${hov ? C.ink : "rgba(18,16,28,0.1)"}`, color: hov ? "#fff" : C.ink, padding: "10px 18px", fontSize: 12, fontWeight: 500, display: "flex", alignItems: "center", gap: 8, transition: "all .25s", cursor: "default" }}>
+                  <i className={t.icon} style={{ color: hov ? "#C9BBF0" : C.violet, fontSize: 13 }} />{t.label}
                 </div>
               );
             })}
@@ -597,7 +595,7 @@ export default function TranovaDigital() {
         <div style={{ maxWidth: 1200, margin: "auto", padding: "0 24px" }}>
           <div style={{ textAlign: "center", marginBottom: 54 }}>
             <SectionTag>Pricing</SectionTag>
-            <SectionTitle>Transparent <span style={{ fontStyle: "italic", color: C.pink }}>engagement</span> tiers</SectionTitle>
+            <SectionTitle>Transparent <span style={{ fontStyle: "italic", color: C.violet }}>engagement</span> tiers</SectionTitle>
             <p style={{ fontSize: 14, color: C.textMuted, lineHeight: 1.8, maxWidth: 520, margin: "0 auto" }}>Every plan pairs development with promotion — one investment, one team.</p>
           </div>
           <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24, alignItems: "stretch" }}>
@@ -633,7 +631,7 @@ export default function TranovaDigital() {
       </section>
 
       {/* ── CTA BANNER ── */}
-      <div style={{ background: C.pink, padding: "64px 0", width: "100%" }}>
+      <div style={{ background: C.violet, padding: "64px 0", width: "100%" }}>
         <div className="cta-banner-inner" style={{ maxWidth: 1200, margin: "auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 28, flexWrap: "wrap" }}>
           <div>
             <h2 style={{ fontFamily: "'Fraunces',serif", fontSize: "clamp(20px,2.5vw,30px)", fontWeight: 500, color: "#fff", lineHeight: 1.2 }}>
@@ -642,7 +640,7 @@ export default function TranovaDigital() {
             <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 13, marginTop: 8 }}>Straightforward consultation, transparent pricing, no surprises.</p>
           </div>
           <div className="cta-btns" style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-            <BtnPrimary href="#contact" style={{ background: C.pinkDeep }}>Get Free Quote</BtnPrimary>
+            <BtnPrimary href="#contact" style={{ background: C.ink }}>Get Free Quote</BtnPrimary>
             <BtnOutline href="tel:+918897000000">Call Now</BtnOutline>
           </div>
         </div>
@@ -653,7 +651,7 @@ export default function TranovaDigital() {
         <div className="contact-grid" style={{ maxWidth: 1200, margin: "auto", padding: "0 24px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start" }}>
           <div>
             <SectionTag>Get In Touch</SectionTag>
-            <SectionTitle>Let's build something <span style={{ fontStyle: "italic", color: C.pink }}>worth building</span></SectionTitle>
+            <SectionTitle>Let's build something <span style={{ fontStyle: "italic", color: C.violet }}>worth building</span></SectionTitle>
             <p style={{ color: C.textMuted, fontSize: 13, lineHeight: 1.8, marginBottom: 32 }}>Whether it's a startup website, a mobile app, an AI system or a full marketing programme — Tranova is your single technology partner.</p>
             {[
               { icon: "fas fa-map-marker-alt", title: "Location", text: "Hyderabad, Telangana, India – 500047" },
@@ -662,7 +660,7 @@ export default function TranovaDigital() {
               { icon: "fab fa-whatsapp", title: "WhatsApp", text: "Instant chat support for\nproject inquiries" },
             ].map((item,i) => (
               <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 14, marginBottom: 22, paddingBottom: 22, borderBottom: i < 3 ? "1px solid rgba(18,16,28,0.06)" : "none" }}>
-                <div style={{ width: 40, height: 40, border: `1px solid ${C.pink}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 15, color: C.pink, flexShrink: 0 }}>
+                <div style={{ width: 40, height: 40, border: `1px solid ${C.violet}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 15, color: C.violet, flexShrink: 0 }}>
                   <i className={item.icon} />
                 </div>
                 <div>
@@ -690,7 +688,7 @@ export default function TranovaDigital() {
               <textarea placeholder="Describe your project or requirement..." style={{ width: "100%", padding: "12px 14px", border: "1px solid rgba(18,16,28,0.15)", fontSize: 13, fontFamily: "'Inter',sans-serif", color: C.textDark, background: "#fff", outline: "none", resize: "vertical", minHeight: 100 }} />
             </div>
             <button onClick={() => { setFormSent(true); setTimeout(() => setFormSent(false), 3500); }}
-              style={{ background: formSent ? "#2E7D4F" : C.pink, color: "#fff", padding: "14px", border: "none", fontWeight: 600, fontSize: 13, cursor: "pointer", fontFamily: "'Inter',sans-serif", textTransform: "uppercase", letterSpacing: ".05em", transition: "background .3s", width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+              style={{ background: formSent ? "#2E7D4F" : C.violet, color: "#fff", padding: "14px", border: "none", fontWeight: 600, fontSize: 13, cursor: "pointer", fontFamily: "'Inter',sans-serif", textTransform: "uppercase", letterSpacing: ".05em", transition: "background .3s", width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
               <i className={formSent ? "fas fa-check" : "fas fa-paper-plane"} />
               {formSent ? "Message Sent — We'll Be In Touch" : "Send Message"}
             </button>
@@ -699,23 +697,23 @@ export default function TranovaDigital() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer style={{ background: C.blush, color: C.textMuted, padding: "64px 0 0", width: "100%", borderTop: "1px solid rgba(166,32,90,0.1)" }}>
+      <footer style={{ background: C.ink, color: "rgba(255,255,255,0.65)", padding: "64px 0 0", width: "100%" }}>
         <div style={{ maxWidth: 1200, margin: "auto", padding: "0 24px" }}>
-          <div className="footer-grid" style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 40, marginBottom: 44, paddingBottom: 44, borderBottom: "1px solid rgba(166,32,90,0.12)" }}>
+          <div className="footer-grid" style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 40, marginBottom: 44, paddingBottom: 44, borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 18 }}>
-                <div style={{ width: 38, height: 38, background: C.pink, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Fraunces',serif", fontSize: 17, fontWeight: 500, color: "#fff" }}>T</div>
+                <div style={{ width: 38, height: 38, background: C.violet, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Fraunces',serif", fontSize: 17, fontWeight: 500, color: "#fff" }}>T</div>
                 <div style={{ lineHeight: 1.15 }}>
-                  <div style={{ fontFamily: "'Fraunces',serif", fontSize: 17, fontWeight: 500, color: C.textDark }}>Tranova</div>
-                  <div style={{ fontSize: 9, color: C.pinkDeep, textTransform: "uppercase", letterSpacing: 2.5, fontWeight: 600 }}>Digital Technologies</div>
+                  <div style={{ fontFamily: "'Fraunces',serif", fontSize: 17, fontWeight: 500, color: "#fff" }}>Tranova</div>
+                  <div style={{ fontSize: 9, color: "#C9BBF0", textTransform: "uppercase", letterSpacing: 2.5, fontWeight: 600 }}>Digital Technologies</div>
                 </div>
               </div>
-              <p style={{ fontSize: 13, lineHeight: 1.8, color: C.textMuted, marginBottom: 20, maxWidth: 260 }}>A full-service digital technology practice offering web, mobile, AI and marketing from Hyderabad.</p>
+              <p style={{ fontSize: 13, lineHeight: 1.8, color: "rgba(255,255,255,0.45)", marginBottom: 20, maxWidth: 260 }}>A full-service digital technology practice offering web, mobile, AI and marketing from Hyderabad.</p>
               <div style={{ display: "flex", gap: 8 }}>
                 {["fab fa-linkedin-in","fab fa-twitter","fab fa-instagram","fab fa-whatsapp"].map((ic,i) => (
-                  <a key={i} href="#" style={{ width: 34, height: 34, border: "1px solid rgba(166,32,90,0.2)", display: "flex", alignItems: "center", justifyContent: "center", color: C.pinkDeep, fontSize: 13, textDecoration: "none", transition: "all .2s" }}
-                    onMouseEnter={e => { e.currentTarget.style.background = C.pink; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = C.pink; }}
-                    onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = C.pinkDeep; e.currentTarget.style.borderColor = "rgba(166,32,90,0.2)"; }}>
+                  <a key={i} href="#" style={{ width: 34, height: 34, border: "1px solid rgba(255,255,255,0.12)", display: "flex", alignItems: "center", justifyContent: "center", color: "rgba(255,255,255,0.5)", fontSize: 13, textDecoration: "none", transition: "all .2s" }}
+                    onMouseEnter={e => { e.currentTarget.style.background = C.violet; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = C.violet; }}
+                    onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "rgba(255,255,255,0.5)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)"; }}>
                     <i className={ic} />
                   </a>
                 ))}
@@ -727,14 +725,14 @@ export default function TranovaDigital() {
               { title: "Projects", links: ["GrabzoMart App","Real Estate CRM","Payroll System","AI Chatbots","Lead Gen Tools","E-Commerce Sites"] },
             ].map(col => (
               <div key={col.title}>
-                <h4 style={{ fontFamily: "'Inter',sans-serif", fontSize: 12, fontWeight: 600, color: C.textDark, marginBottom: 18, textTransform: "uppercase", letterSpacing: "1.5px" }}>
+                <h4 style={{ fontFamily: "'Inter',sans-serif", fontSize: 12, fontWeight: 600, color: "#fff", marginBottom: 18, textTransform: "uppercase", letterSpacing: "1.5px" }}>
                   {col.title}
                 </h4>
                 <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 11 }}>
                   {col.links.map(link => (
-                    <li key={link}><a href="#" style={{ fontSize: 12, color: C.textMuted, textDecoration: "none", transition: "color .2s" }}
-                      onMouseEnter={e => e.currentTarget.style.color = C.pink}
-                      onMouseLeave={e => e.currentTarget.style.color = C.textMuted}>{link}
+                    <li key={link}><a href="#" style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", textDecoration: "none", transition: "color .2s" }}
+                      onMouseEnter={e => e.currentTarget.style.color = "#C9BBF0"}
+                      onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.45)"}>{link}
                     </a></li>
                   ))}
                 </ul>
@@ -742,10 +740,10 @@ export default function TranovaDigital() {
             ))}
           </div>
           <div className="footer-bottom" style={{ padding: "18px 0 24px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 8 }}>
-            <p style={{ fontSize: 12, color: C.textMuted }}>© 2025 Tranova Digital Technologies. All rights reserved.</p>
+            <p style={{ fontSize: 12, color: "rgba(255,255,255,0.3)" }}>© 2025 Tranova Digital Technologies. All rights reserved.</p>
             <div style={{ display: "flex", gap: 18 }}>
-              <a href="#" style={{ fontSize: 12, color: C.textMuted, textDecoration: "none" }}>Privacy Policy</a>
-              <a href="#" style={{ fontSize: 12, color: C.textMuted, textDecoration: "none" }}>Terms of Service</a>
+              <a href="#" style={{ fontSize: 12, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>Privacy Policy</a>
+              <a href="#" style={{ fontSize: 12, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>Terms of Service</a>
             </div>
           </div>
         </div>
@@ -753,7 +751,7 @@ export default function TranovaDigital() {
 
       {showTop && (
         <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          style={{ position: "fixed", bottom: 24, right: 24, width: 44, height: 44, background: C.pink, color: "#fff", border: "none", fontSize: 15, cursor: "pointer", boxShadow: shadowMd, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 999 }}>
+          style={{ position: "fixed", bottom: 24, right: 24, width: 44, height: 44, background: C.violet, color: "#fff", border: "none", fontSize: 15, cursor: "pointer", boxShadow: shadowMd, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 999 }}>
           <i className="fas fa-chevron-up" />
         </button>
       )}
