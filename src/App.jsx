@@ -124,6 +124,7 @@ const services = [
   { icon: "fab fa-android", title: "Mobile App Development", desc: "Android and iOS applications built on React Native, from consumer delivery platforms to enterprise-grade CRM tools." },
   { icon: "fas fa-globe", title: "Web Development", desc: "Full-stack platforms using React, Python FastAPI and PostgreSQL, deployed on Railway and DigitalOcean." },
   { icon: "fas fa-brain", title: "AI Development", desc: "Applied automation, conversational AI and recommendation systems tailored to your operating model." },
+  { icon: "fas fa-vial", title: "Automation Testing", desc: "End-to-end and regression test automation using Selenium, Playwright and CI-integrated test suites that catch issues before release." },
   { icon: "fas fa-bullhorn", title: "Digital Marketing", desc: "Performance marketing, lead generation and social strategy engineered around measurable outcomes." },
   { icon: "fas fa-pen-fancy", title: "Content & Brand", desc: "Editorial content, brand identity and audience growth programmes for founders scaling a category." },
   { icon: "fas fa-database", title: "Cloud & Data", desc: "PostgreSQL architecture, managed hosting and infrastructure operations that scale with demand." },
@@ -182,12 +183,14 @@ const team = [
   { name: "Thirupathi Kodaganti", role: "Founder & CEO", icon: "fas fa-user-tie" },
   { name: "Sardar Harpreeth Singh", role: "Senior Developer", icon: "fas fa-user-cog" },
   { name: "Ranaprathap", role: "Director, Digital", icon: "fas fa-user-tie" },
+  { name: "Anna Reddy", role: "QA & Automation Lead", icon: "fas fa-user-check" },
 ];
 
 const blogs = [
   { cat: "Mobile", icon: "fas fa-mobile-alt", date: "May 2025", author: "Thirupathi", title: "Building a Delivery Platform From Scratch", desc: "A practical guide to a production Android delivery app on React Native, FastAPI and PostgreSQL." },
   { cat: "Marketing", icon: "fas fa-chart-line", date: "Apr 2025", author: "Ranaprathap", title: "Lead Generation for Early-Stage Startups", desc: "How targeted campaigns produced 500+ qualified leads per month for growth-stage clients." },
   { cat: "AI", icon: "fas fa-brain", date: "Mar 2025", author: "Anna", title: "An AI-Native CRM for Real Estate Teams", desc: "How automated follow-ups and intent scoring lifted conversion by 40 percent." },
+  { cat: "QA", icon: "fas fa-vial", date: "Feb 2025", author: "Anna Reddy", title: "Cutting Regression Time With Test Automation", desc: "How a Selenium and Playwright suite integrated into CI cut regression cycles from days to hours." },
 ];
 
 const techStack = [
@@ -203,6 +206,9 @@ const techStack = [
   { icon: "fab fa-apple", label: "App Store" },
   { icon: "fas fa-brain", label: "AI / ML" },
   { icon: "fab fa-google", label: "Google Play" },
+  { icon: "fas fa-vial", label: "Selenium" },
+  { icon: "fas fa-robot", label: "Playwright" },
+  { icon: "fas fa-infinity", label: "CI/CD" },
 ];
 
 const SectionTag = ({ children }) => (
@@ -273,14 +279,36 @@ function PricingCard({ data }) {
   );
 }
 
-function TeamCard({ member }) {
+function TeamAvatar({ seed }) {
+  const hues = [
+    { skin: "#E8B9CE", hair: "#3D2F73", top: "#5B4B9E" },
+    { skin: "#D9A9B0", hair: "#1D1832", top: "#3D2F73" },
+    { skin: "#C98F6E", hair: "#12101C", top: "#7A67C4" },
+    { skin: "#E3B98C", hair: "#2A1F1A", top: "#5B4B9E" },
+  ];
+  const p = hues[seed % hues.length];
+  return (
+    <svg viewBox="0 0 200 220" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+      <rect width="200" height="220" fill="#F1EEF7" />
+      <ellipse cx="100" cy="205" rx="70" ry="14" fill="#E3DAF1" />
+      <path d="M40 220 Q40 150 100 150 Q160 150 160 220 Z" fill={p.top} />
+      <circle cx="100" cy="105" r="48" fill={p.skin} />
+      <path d="M52 100 Q52 45 100 45 Q148 45 148 100 Q140 80 100 78 Q60 80 52 100 Z" fill={p.hair} />
+      <circle cx="80" cy="108" r="4" fill="#2A1420" />
+      <circle cx="120" cy="108" r="4" fill="#2A1420" />
+      <path d="M85 128 Q100 138 115 128" stroke="#2A1420" strokeWidth="3" fill="none" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function TeamCard({ member, seed }) {
   const [hov, setHov] = useState(false);
   return (
     <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       style={{ border: "1px solid rgba(18,16,28,0.08)", boxShadow: hov ? shadowCard : "none", transition: "all .3s" }}>
       <div style={{ position: "relative" }}>
-        <div style={{ height: 220, background: C.paperMid, display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <i className={member.icon} style={{ fontSize: 64, color: C.violet, opacity: 0.35 }} />
+        <div style={{ height: 220, overflow: "hidden" }}>
+          <TeamAvatar seed={seed} />
         </div>
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg,transparent 45%,rgba(18,16,28,0.82) 100%)", opacity: hov ? 1 : 0, transition: "opacity .3s", display: "flex", alignItems: "flex-end", justifyContent: "center", paddingBottom: 18, gap: 10 }}>
           {["fab fa-linkedin-in", "fas fa-envelope"].map((ic, i) => (
@@ -460,7 +488,7 @@ export default function TranovaDigital() {
               Considered digital work,<br />built to <span style={{ fontStyle: "italic", color: "#C9BBF0" }}>compound</span>
             </h1>
             <p style={{ fontSize: 15, color: "rgba(255,255,255,0.6)", lineHeight: 1.8, marginBottom: 32, maxWidth: 440 }}>
-              From mobile and web platforms to applied AI and growth marketing — Tranova delivers end-to-end technology and brand programmes under one roof.
+              From mobile and web platforms to applied AI, automation testing and growth marketing — Tranova delivers end-to-end technology and brand programmes under one roof.
             </p>
             <div className="hero-btns" style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
               <BtnPrimary href="#services">Explore Services</BtnPrimary>
@@ -479,10 +507,61 @@ export default function TranovaDigital() {
 
           <div className="hero-visual" style={{ position: "relative" }}>
             <div style={{ border: "1px solid rgba(255,255,255,0.12)" }}>
-              <div style={{ width: "100%", height: 380, background: C.inkMid, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16 }}>
-                <i className="fas fa-city" style={{ fontSize: 80, color: "rgba(201,187,240,0.25)" }} />
-                <p style={{ color: "rgba(255,255,255,0.3)", fontSize: 12, fontFamily: "'Inter',sans-serif", letterSpacing: ".5px" }}>Tranova Team at Work</p>
-              </div>
+              <svg viewBox="0 0 560 380" width="100%" height="380" style={{ display: "block", background: C.inkMid }} xmlns="http://www.w3.org/2000/svg">
+                <rect width="560" height="380" fill={C.inkMid} />
+                <circle cx="470" cy="60" r="120" fill="#251d42" />
+                <circle cx="40" cy="340" r="90" fill="#241c3f" />
+
+                <rect x="60" y="270" width="440" height="14" fill="#3D2F73" />
+                <rect x="80" y="284" width="10" height="60" fill="#332863" />
+                <rect x="470" y="284" width="10" height="60" fill="#332863" />
+
+                <g>
+                  <rect x="150" y="228" width="110" height="72" rx="4" fill="#0a0814" />
+                  <rect x="158" y="236" width="94" height="56" rx="2" fill="#5B4B9E" />
+                  <rect x="140" y="298" width="130" height="8" rx="2" fill="#3D2F73" />
+                </g>
+
+                <g>
+                  <rect x="330" y="196" width="130" height="86" rx="6" fill="#0a0814" />
+                  <rect x="340" y="206" width="110" height="66" rx="3" fill="#6C5AC0" />
+                  <rect x="382" y="282" width="26" height="14" fill="#0a0814" />
+                  <rect x="368" y="296" width="54" height="6" rx="3" fill="#0a0814" />
+                  <rect x="352" y="218" width="70" height="8" rx="4" fill="#fff" opacity="0.7" />
+                  <rect x="352" y="234" width="50" height="8" rx="4" fill="#fff" opacity="0.5" />
+                  <rect x="352" y="250" width="60" height="8" rx="4" fill="#fff" opacity="0.6" />
+                </g>
+
+                <g>
+                  <ellipse cx="120" cy="270" rx="34" ry="10" fill="#241c3f" opacity="0.6" />
+                  <rect x="95" y="200" width="52" height="70" rx="18" fill="#5B4B9E" />
+                  <circle cx="121" cy="176" r="26" fill="#0a0814" />
+                  <circle cx="121" cy="182" r="21" fill="#C9A98F" />
+                  <path d="M100 172 Q121 148 142 172 L142 165 Q121 145 100 165 Z" fill="#0a0814" />
+                </g>
+
+                <g>
+                  <ellipse cx="290" cy="278" rx="40" ry="10" fill="#241c3f" opacity="0.6" />
+                  <rect x="258" y="188" width="64" height="90" rx="20" fill="#3D2F73" />
+                  <circle cx="290" cy="162" r="28" fill="#0a0814" />
+                  <circle cx="290" cy="169" r="22" fill="#E8B9CE" />
+                  <path d="M266 158 Q290 130 314 158 L314 150 Q290 126 266 150 Z" fill="#0a0814" />
+                  <rect x="250" y="210" width="18" height="50" rx="9" fill="#3D2F73" />
+                  <rect x="322" y="200" width="18" height="55" rx="9" fill="#3D2F73" transform="rotate(18 322 200)" />
+                </g>
+
+                <g>
+                  <ellipse cx="440" cy="272" rx="34" ry="10" fill="#241c3f" opacity="0.6" />
+                  <rect x="415" y="204" width="50" height="66" rx="17" fill="#0a0814" />
+                  <circle cx="440" cy="182" r="25" fill="#0a0814" />
+                  <circle cx="440" cy="188" r="20" fill="#D9A9B0" />
+                  <path d="M420 178 Q440 156 460 178 L460 172 Q440 152 420 172 Z" fill="#0a0814" />
+                </g>
+
+                <circle cx="500" cy="120" r="5" fill="#C9BBF0" opacity="0.5" />
+                <circle cx="60" cy="90" r="4" fill="#8f7ad1" opacity="0.4" />
+                <circle cx="230" cy="60" r="3.5" fill="#C9BBF0" opacity="0.35" />
+              </svg>
             </div>
             <div style={{ position: "absolute", bottom: -1, left: -1, right: -1, background: C.violet, padding: "16px 22px", display: "flex", alignItems: "center", gap: 14 }}>
               <i className="fas fa-star" style={{ color: "#fff", fontSize: 16 }} />
@@ -527,9 +606,31 @@ export default function TranovaDigital() {
         <div className="about-grid" style={{ maxWidth: 1200, margin: "auto", padding: "0 24px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
           <div className="about-img-col" style={{ position: "relative" }}>
             <div style={{ border: "1px solid rgba(18,16,28,0.1)" }}>
-              <div style={{ width: "100%", height: 420, background: C.paperMid, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <i className="fas fa-handshake" style={{ fontSize: 90, color: C.violet, opacity: 0.25 }} />
-              </div>
+              <svg viewBox="0 0 500 420" width="100%" height="420" style={{ display: "block", background: C.paperMid }} xmlns="http://www.w3.org/2000/svg">
+                <rect width="500" height="420" fill={C.paperMid} />
+                <circle cx="120" cy="90" r="100" fill="#E7E1F3" />
+                <circle cx="410" cy="330" r="80" fill="#EFEAF8" />
+                <g transform="translate(120,150)">
+                  <rect x="-16" y="0" width="32" height="120" rx="16" fill={C.violet} />
+                  <circle cx="0" cy="-24" r="30" fill="#0a0814" />
+                  <circle cx="0" cy="-18" r="24" fill="#C9A98F" />
+                  <rect x="-46" y="30" width="20" height="70" rx="10" fill={C.violet} transform="rotate(28 -46 30)" />
+                </g>
+                <g transform="translate(240,150)">
+                  <rect x="-18" y="0" width="36" height="130" rx="18" fill={C.violetDeep} />
+                  <circle cx="0" cy="-26" r="32" fill="#0a0814" />
+                  <circle cx="0" cy="-19" r="26" fill="#E8B9CE" />
+                  <rect x="14" y="26" width="20" height="72" rx="10" fill={C.violetDeep} transform="rotate(-30 14 26)" />
+                </g>
+                <g transform="translate(120,150) rotate(28) translate(-46,60)">
+                </g>
+                <rect x="98" y="243" width="36" height="16" rx="8" fill="#3D2F73" transform="rotate(28 116 251)" />
+                <rect x="228" y="240" width="36" height="16" rx="8" fill="#5B4B9E" transform="rotate(-30 246 248)" />
+                <circle cx="180" cy="245" r="10" fill="#B9975B" />
+                <circle cx="60" cy="60" r="4" fill={C.violet} opacity="0.4" />
+                <circle cx="440" cy="120" r="5" fill={C.violetDeep} opacity="0.35" />
+                <circle cx="380" cy="60" r="3" fill={C.violet} opacity="0.4" />
+              </svg>
             </div>
             <div style={{ position: "absolute", bottom: -1, right: -1, background: C.ink, color: "#fff", padding: "18px 22px", textAlign: "center" }}>
               <div style={{ fontFamily: "'Fraunces',serif", fontSize: 28, fontWeight: 500, lineHeight: 1 }}>3+</div>
@@ -539,9 +640,9 @@ export default function TranovaDigital() {
           <div>
             <SectionTag>About Tranova</SectionTag>
             <SectionTitle>Full-service technology, <span style={{ fontStyle: "italic", color: C.violet }}>run like a studio</span></SectionTitle>
-            <p style={{ color: C.textMuted, fontSize: 14, lineHeight: 1.85, marginBottom: 24 }}>Tranova Digital Technologies is a Hyderabad-based technology practice offering development, digital marketing, applied AI and brand building under one roof — built for founders who want a single accountable partner.</p>
+            <p style={{ color: C.textMuted, fontSize: 14, lineHeight: 1.85, marginBottom: 24 }}>Tranova Digital Technologies is a Hyderabad-based technology practice offering development, digital marketing, applied AI, automation testing and brand building under one roof — built for founders who want a single accountable partner.</p>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, margin: "24px 0 32px" }}>
-              {["Android & iOS Development","Web Platforms (React, FastAPI)","AI & Automation","Marketing & Lead Generation","PostgreSQL & Cloud Hosting","Brand & Content Strategy"].map(f => (
+              {["Android & iOS Development","Web Platforms (React, FastAPI)","AI & Automation","Automation Testing (QA)","Marketing & Lead Generation","PostgreSQL & Cloud Hosting","Brand & Content Strategy"].map(f => (
                 <div key={f} style={{ display: "flex", alignItems: "flex-start", gap: 10, fontSize: 13, fontWeight: 500, color: C.textDark }}>
                   <i className="fas fa-check" style={{ color: C.violet, fontSize: 12, flexShrink: 0, marginTop: 3 }} />{f}
                 </div>
@@ -611,8 +712,8 @@ export default function TranovaDigital() {
             <SectionTag>Our Team</SectionTag>
             <SectionTitle>The people behind the work</SectionTitle>
           </div>
-          <div className="team-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
-            {team.map((m,i) => <TeamCard key={i} member={m} />)}
+          <div className="team-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24 }}>
+            {team.map((m,i) => <TeamCard key={i} member={m} seed={i} />)}
           </div>
         </div>
       </section>
@@ -624,7 +725,7 @@ export default function TranovaDigital() {
             <SectionTag>Latest Articles</SectionTag>
             <SectionTitle>Notes from the studio</SectionTitle>
           </div>
-          <div className="blog-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
+          <div className="blog-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 24 }}>
             {blogs.map((b,i) => <BlogCard key={i} post={b} />)}
           </div>
         </div>
@@ -652,7 +753,7 @@ export default function TranovaDigital() {
           <div>
             <SectionTag>Get In Touch</SectionTag>
             <SectionTitle>Let's build something <span style={{ fontStyle: "italic", color: C.violet }}>worth building</span></SectionTitle>
-            <p style={{ color: C.textMuted, fontSize: 13, lineHeight: 1.8, marginBottom: 32 }}>Whether it's a startup website, a mobile app, an AI system or a full marketing programme — Tranova is your single technology partner.</p>
+            <p style={{ color: C.textMuted, fontSize: 13, lineHeight: 1.8, marginBottom: 32 }}>Whether it's a startup website, a mobile app, an AI system, a test automation suite or a full marketing programme — Tranova is your single technology partner.</p>
             {[
               { icon: "fas fa-map-marker-alt", title: "Location", text: "Hyderabad, Telangana, India – 500047" },
               { icon: "fas fa-phone-alt", title: "Phone", text: "+91 8897XXXXXX\nMon – Sat: 9AM to 7PM" },
@@ -680,7 +781,7 @@ export default function TranovaDigital() {
             <div style={{ marginBottom: 16 }}>
               <label style={{ display: "block", fontSize: 11, fontWeight: 600, color: C.ink, marginBottom: 8, textTransform: "uppercase", letterSpacing: "1.2px", fontFamily: "'Inter',sans-serif" }}>Service Required</label>
               <select style={{ width: "100%", padding: "12px 14px", border: "1px solid rgba(18,16,28,0.15)", fontSize: 13, fontFamily: "'Inter',sans-serif", color: C.textDark, background: "#fff", outline: "none" }}>
-                {["Select a Service","Web Development","Mobile App Development","AI Development","Digital Marketing","Brand Promotion","CRM / ERP System","Full Digital Package"].map(o => <option key={o}>{o}</option>)}
+                {["Select a Service","Web Development","Mobile App Development","AI Development","Automation Testing (QA)","Digital Marketing","Brand Promotion","CRM / ERP System","Full Digital Package"].map(o => <option key={o}>{o}</option>)}
               </select>
             </div>
             <div style={{ marginBottom: 20 }}>
@@ -708,7 +809,7 @@ export default function TranovaDigital() {
                   <div style={{ fontSize: 9, color: "#C9BBF0", textTransform: "uppercase", letterSpacing: 2.5, fontWeight: 600 }}>Digital Technologies</div>
                 </div>
               </div>
-              <p style={{ fontSize: 13, lineHeight: 1.8, color: "rgba(255,255,255,0.45)", marginBottom: 20, maxWidth: 260 }}>A full-service digital technology practice offering web, mobile, AI and marketing from Hyderabad.</p>
+              <p style={{ fontSize: 13, lineHeight: 1.8, color: "rgba(255,255,255,0.45)", marginBottom: 20, maxWidth: 260 }}>A full-service digital technology practice offering web, mobile, AI, automation testing and marketing from Hyderabad.</p>
               <div style={{ display: "flex", gap: 8 }}>
                 {["fab fa-linkedin-in","fab fa-twitter","fab fa-instagram","fab fa-whatsapp"].map((ic,i) => (
                   <a key={i} href="#" style={{ width: 34, height: 34, border: "1px solid rgba(255,255,255,0.12)", display: "flex", alignItems: "center", justifyContent: "center", color: "rgba(255,255,255,0.5)", fontSize: 13, textDecoration: "none", transition: "all .2s" }}
@@ -720,9 +821,9 @@ export default function TranovaDigital() {
               </div>
             </div>
             {[
-              { title: "Services", links: ["Web Development","Mobile App Dev","AI Development","Digital Marketing","Brand Promotion","CRM Systems"] },
+              { title: "Services", links: ["Web Development","Mobile App Dev","AI Development","Automation Testing","Digital Marketing","CRM Systems"] },
               { title: "Company", links: ["About Tranova","Our Team","Portfolio","Blog & Articles","Careers","Contact Us"] },
-              { title: "Projects", links: ["GrabzoMart App","Real Estate CRM","Payroll System","AI Chatbots","Lead Gen Tools","E-Commerce Sites"] },
+              { title: "Projects", links: ["GrabzoMart App","Real Estate CRM","Payroll System","AI Chatbots","QA Automation Suite","E-Commerce Sites"] },
             ].map(col => (
               <div key={col.title}>
                 <h4 style={{ fontFamily: "'Inter',sans-serif", fontSize: 12, fontWeight: 600, color: "#fff", marginBottom: 18, textTransform: "uppercase", letterSpacing: "1.5px" }}>
