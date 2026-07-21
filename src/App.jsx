@@ -279,36 +279,14 @@ function PricingCard({ data }) {
   );
 }
 
-function TeamAvatar({ seed }) {
-  const hues = [
-    { skin: "#E8B9CE", hair: "#3D2F73", top: "#5B4B9E" },
-    { skin: "#D9A9B0", hair: "#1D1832", top: "#3D2F73" },
-    { skin: "#C98F6E", hair: "#12101C", top: "#7A67C4" },
-    { skin: "#E3B98C", hair: "#2A1F1A", top: "#5B4B9E" },
-  ];
-  const p = hues[seed % hues.length];
-  return (
-    <svg viewBox="0 0 200 220" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
-      <rect width="200" height="220" fill="#F1EEF7" />
-      <ellipse cx="100" cy="205" rx="70" ry="14" fill="#E3DAF1" />
-      <path d="M40 220 Q40 150 100 150 Q160 150 160 220 Z" fill={p.top} />
-      <circle cx="100" cy="105" r="48" fill={p.skin} />
-      <path d="M52 100 Q52 45 100 45 Q148 45 148 100 Q140 80 100 78 Q60 80 52 100 Z" fill={p.hair} />
-      <circle cx="80" cy="108" r="4" fill="#2A1420" />
-      <circle cx="120" cy="108" r="4" fill="#2A1420" />
-      <path d="M85 128 Q100 138 115 128" stroke="#2A1420" strokeWidth="3" fill="none" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function TeamCard({ member, seed }) {
+function TeamCard({ member, seed, photo }) {
   const [hov, setHov] = useState(false);
   return (
     <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       style={{ border: "1px solid rgba(18,16,28,0.08)", boxShadow: hov ? shadowCard : "none", transition: "all .3s" }}>
       <div style={{ position: "relative" }}>
         <div style={{ height: 220, overflow: "hidden" }}>
-          <TeamAvatar seed={seed} />
+          <img src={photo} alt={member.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: hov ? "none" : "grayscale(10%)", transition: "filter .3s" }} />
         </div>
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg,transparent 45%,rgba(18,16,28,0.82) 100%)", opacity: hov ? 1 : 0, transition: "opacity .3s", display: "flex", alignItems: "flex-end", justifyContent: "center", paddingBottom: 18, gap: 10 }}>
           {["fab fa-linkedin-in", "fas fa-envelope"].map((ic, i) => (
@@ -507,61 +485,11 @@ export default function TranovaDigital() {
 
           <div className="hero-visual" style={{ position: "relative" }}>
             <div style={{ border: "1px solid rgba(255,255,255,0.12)" }}>
-              <svg viewBox="0 0 560 380" width="100%" height="380" style={{ display: "block", background: C.inkMid }} xmlns="http://www.w3.org/2000/svg">
-                <rect width="560" height="380" fill={C.inkMid} />
-                <circle cx="470" cy="60" r="120" fill="#251d42" />
-                <circle cx="40" cy="340" r="90" fill="#241c3f" />
-
-                <rect x="60" y="270" width="440" height="14" fill="#3D2F73" />
-                <rect x="80" y="284" width="10" height="60" fill="#332863" />
-                <rect x="470" y="284" width="10" height="60" fill="#332863" />
-
-                <g>
-                  <rect x="150" y="228" width="110" height="72" rx="4" fill="#0a0814" />
-                  <rect x="158" y="236" width="94" height="56" rx="2" fill="#5B4B9E" />
-                  <rect x="140" y="298" width="130" height="8" rx="2" fill="#3D2F73" />
-                </g>
-
-                <g>
-                  <rect x="330" y="196" width="130" height="86" rx="6" fill="#0a0814" />
-                  <rect x="340" y="206" width="110" height="66" rx="3" fill="#6C5AC0" />
-                  <rect x="382" y="282" width="26" height="14" fill="#0a0814" />
-                  <rect x="368" y="296" width="54" height="6" rx="3" fill="#0a0814" />
-                  <rect x="352" y="218" width="70" height="8" rx="4" fill="#fff" opacity="0.7" />
-                  <rect x="352" y="234" width="50" height="8" rx="4" fill="#fff" opacity="0.5" />
-                  <rect x="352" y="250" width="60" height="8" rx="4" fill="#fff" opacity="0.6" />
-                </g>
-
-                <g>
-                  <ellipse cx="120" cy="270" rx="34" ry="10" fill="#241c3f" opacity="0.6" />
-                  <rect x="95" y="200" width="52" height="70" rx="18" fill="#5B4B9E" />
-                  <circle cx="121" cy="176" r="26" fill="#0a0814" />
-                  <circle cx="121" cy="182" r="21" fill="#C9A98F" />
-                  <path d="M100 172 Q121 148 142 172 L142 165 Q121 145 100 165 Z" fill="#0a0814" />
-                </g>
-
-                <g>
-                  <ellipse cx="290" cy="278" rx="40" ry="10" fill="#241c3f" opacity="0.6" />
-                  <rect x="258" y="188" width="64" height="90" rx="20" fill="#3D2F73" />
-                  <circle cx="290" cy="162" r="28" fill="#0a0814" />
-                  <circle cx="290" cy="169" r="22" fill="#E8B9CE" />
-                  <path d="M266 158 Q290 130 314 158 L314 150 Q290 126 266 150 Z" fill="#0a0814" />
-                  <rect x="250" y="210" width="18" height="50" rx="9" fill="#3D2F73" />
-                  <rect x="322" y="200" width="18" height="55" rx="9" fill="#3D2F73" transform="rotate(18 322 200)" />
-                </g>
-
-                <g>
-                  <ellipse cx="440" cy="272" rx="34" ry="10" fill="#241c3f" opacity="0.6" />
-                  <rect x="415" y="204" width="50" height="66" rx="17" fill="#0a0814" />
-                  <circle cx="440" cy="182" r="25" fill="#0a0814" />
-                  <circle cx="440" cy="188" r="20" fill="#D9A9B0" />
-                  <path d="M420 178 Q440 156 460 178 L460 172 Q440 152 420 172 Z" fill="#0a0814" />
-                </g>
-
-                <circle cx="500" cy="120" r="5" fill="#C9BBF0" opacity="0.5" />
-                <circle cx="60" cy="90" r="4" fill="#8f7ad1" opacity="0.4" />
-                <circle cx="230" cy="60" r="3.5" fill="#C9BBF0" opacity="0.35" />
-              </svg>
+              <img
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&h=620&q=80"
+                alt="Team collaborating on a digital product"
+                style={{ display: "block", width: "100%", height: 380, objectFit: "cover" }}
+              />
             </div>
             <div style={{ position: "absolute", bottom: -1, left: -1, right: -1, background: C.violet, padding: "16px 22px", display: "flex", alignItems: "center", gap: 14 }}>
               <i className="fas fa-star" style={{ color: "#fff", fontSize: 16 }} />
@@ -606,31 +534,11 @@ export default function TranovaDigital() {
         <div className="about-grid" style={{ maxWidth: 1200, margin: "auto", padding: "0 24px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
           <div className="about-img-col" style={{ position: "relative" }}>
             <div style={{ border: "1px solid rgba(18,16,28,0.1)" }}>
-              <svg viewBox="0 0 500 420" width="100%" height="420" style={{ display: "block", background: C.paperMid }} xmlns="http://www.w3.org/2000/svg">
-                <rect width="500" height="420" fill={C.paperMid} />
-                <circle cx="120" cy="90" r="100" fill="#E7E1F3" />
-                <circle cx="410" cy="330" r="80" fill="#EFEAF8" />
-                <g transform="translate(120,150)">
-                  <rect x="-16" y="0" width="32" height="120" rx="16" fill={C.violet} />
-                  <circle cx="0" cy="-24" r="30" fill="#0a0814" />
-                  <circle cx="0" cy="-18" r="24" fill="#C9A98F" />
-                  <rect x="-46" y="30" width="20" height="70" rx="10" fill={C.violet} transform="rotate(28 -46 30)" />
-                </g>
-                <g transform="translate(240,150)">
-                  <rect x="-18" y="0" width="36" height="130" rx="18" fill={C.violetDeep} />
-                  <circle cx="0" cy="-26" r="32" fill="#0a0814" />
-                  <circle cx="0" cy="-19" r="26" fill="#E8B9CE" />
-                  <rect x="14" y="26" width="20" height="72" rx="10" fill={C.violetDeep} transform="rotate(-30 14 26)" />
-                </g>
-                <g transform="translate(120,150) rotate(28) translate(-46,60)">
-                </g>
-                <rect x="98" y="243" width="36" height="16" rx="8" fill="#3D2F73" transform="rotate(28 116 251)" />
-                <rect x="228" y="240" width="36" height="16" rx="8" fill="#5B4B9E" transform="rotate(-30 246 248)" />
-                <circle cx="180" cy="245" r="10" fill="#B9975B" />
-                <circle cx="60" cy="60" r="4" fill={C.violet} opacity="0.4" />
-                <circle cx="440" cy="120" r="5" fill={C.violetDeep} opacity="0.35" />
-                <circle cx="380" cy="60" r="3" fill={C.violet} opacity="0.4" />
-              </svg>
+              <img
+                src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=900&h=760&q=80"
+                alt="Developers working together on code"
+                style={{ display: "block", width: "100%", height: 420, objectFit: "cover" }}
+              />
             </div>
             <div style={{ position: "absolute", bottom: -1, right: -1, background: C.ink, color: "#fff", padding: "18px 22px", textAlign: "center" }}>
               <div style={{ fontFamily: "'Fraunces',serif", fontSize: 28, fontWeight: 500, lineHeight: 1 }}>3+</div>
@@ -713,7 +621,7 @@ export default function TranovaDigital() {
             <SectionTitle>The people behind the work</SectionTitle>
           </div>
           <div className="team-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24 }}>
-            {team.map((m,i) => <TeamCard key={i} member={m} seed={i} />)}
+            {team.map((m,i) => <TeamCard key={i} member={m} seed={i} photo={teamPhotos[i]} />)}
           </div>
         </div>
       </section>
