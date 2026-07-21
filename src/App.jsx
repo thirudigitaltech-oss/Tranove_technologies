@@ -89,6 +89,10 @@ const RESPONSIVE_CSS = `
     .hamburger { display: flex; }
     .nav-desktop-links { display: none !important; }
     .nav-desktop-btn { display: none !important; }
+    .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 32px 24px !important; }
+    .services-grid { grid-template-columns: repeat(2,1fr) !important; }
+    .pricing-grid { grid-template-columns: repeat(2,1fr) !important; }
+    .starts-grid { grid-template-columns: repeat(2,1fr) !important; }
   }
 
   @media (max-width: 768px) {
@@ -100,10 +104,14 @@ const RESPONSIVE_CSS = `
     .about-img-col { display: none !important; }
     .services-grid { grid-template-columns: 1fr !important; }
     .pricing-grid { grid-template-columns: 1fr !important; }
+    .starts-grid { grid-template-columns: 1fr !important; }
     .team-grid { grid-template-columns: 1fr !important; }
     .blog-grid { grid-template-columns: 1fr !important; }
     .contact-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
-    .footer-grid { grid-template-columns: 1fr !important; gap: 30px !important; }
+    .footer-grid { grid-template-columns: 1fr !important; gap: 34px !important; text-align: center !important; }
+    .footer-grid > div:first-child > div:first-child { justify-content: center !important; }
+    .footer-grid > div:first-child > p { margin-left: auto !important; margin-right: auto !important; }
+    .footer-grid > div:first-child > div:last-child { justify-content: center !important; }
     .footer-bottom { flex-direction: column !important; text-align: center !important; gap: 10px !important; }
     .cta-banner-inner { flex-direction: column !important; text-align: center !important; }
     .cta-btns { justify-content: center !important; }
@@ -117,17 +125,100 @@ const RESPONSIVE_CSS = `
     .section-title { font-size: 22px !important; }
     .hero-btns { flex-direction: column !important; }
     .hero-btns a, .hero-btns button { width: 100% !important; justify-content: center !important; }
+    .footer-grid { gap: 30px !important; }
+    .footer-grid ul { align-items: center !important; }
   }
 `;
 
 const services = [
-  { icon: "fab fa-android", title: "Mobile App Development", desc: "Android and iOS applications built on React Native, from consumer delivery platforms to enterprise-grade CRM tools." },
-  { icon: "fas fa-globe", title: "Web Development", desc: "Full-stack platforms using React, Python FastAPI and PostgreSQL, deployed on Railway and DigitalOcean." },
-  { icon: "fas fa-brain", title: "AI Development", desc: "Applied automation, conversational AI and recommendation systems tailored to your operating model." },
-  { icon: "fas fa-vial", title: "Automation Testing", desc: "End-to-end and regression test automation using Selenium, Playwright and CI-integrated test suites that catch issues before release." },
-  { icon: "fas fa-bullhorn", title: "Digital Marketing", desc: "Performance marketing, lead generation and social strategy engineered around measurable outcomes." },
-  { icon: "fas fa-pen-fancy", title: "Content & Brand", desc: "Editorial content, brand identity and audience growth programmes for founders scaling a category." },
-  { icon: "fas fa-database", title: "Cloud & Data", desc: "PostgreSQL architecture, managed hosting and infrastructure operations that scale with demand." },
+  {
+    icon: "fab fa-android",
+    title: "Mobile App Development",
+    desc: "Android and iOS apps built on React Native. One codebase for both app stores — useful for delivery apps, booking apps, and internal business tools your team and customers use daily.",
+    who: "For businesses that want customers to book, order or track something from a phone.",
+  },
+  {
+    icon: "fas fa-globe",
+    title: "Web Development",
+    desc: "Business websites and web apps built with React JS and JavaScript on the frontend, Python FastAPI on the backend, and PostgreSQL for data — hosted reliably on the cloud.",
+    who: "For businesses that need a fast, modern website or a custom web platform, not just a template.",
+  },
+  {
+    icon: "fas fa-brain",
+    title: "AI Development",
+    desc: "Applied AI — chatbots, automated replies, recommendation systems and workflow automation. If your team repeats the same task every day, we identify it and automate it.",
+    who: "For businesses spending manual hours on repetitive, rule-based work.",
+  },
+  {
+    icon: "fas fa-vial",
+    title: "Automation Testing",
+    desc: "Automated test scripts using Playwright, so every update to your website or app is checked automatically before it goes live — catching bugs before your customers do.",
+    who: "For products that release updates often and can't afford to break in front of users.",
+  },
+  {
+    icon: "fas fa-bullhorn",
+    title: "Digital Marketing",
+    desc: "Meta Ads (Instagram, Facebook, WhatsApp), Google Ads (Search, Display, YouTube), social media management and Google My Business setup — built to bring awareness, leads and enquiries to your business.",
+    who: "For businesses that need more people to know they exist, and more enquiries to come in.",
+  },
+  {
+    icon: "fas fa-pen-fancy",
+    title: "Content & Brand",
+    desc: "Editorial content, brand identity and audience growth — the words, visuals and posting plan that make your brand recognisable and trusted.",
+    who: "For businesses that have the product but need people to remember the name.",
+  },
+  {
+    icon: "fas fa-database",
+    title: "Cloud & Data",
+    desc: "PostgreSQL database architecture and managed hosting on DigitalOcean — infrastructure that stays fast and online as your business grows.",
+    who: "For businesses whose website or app needs to survive real traffic, not just a demo.",
+  },
+];
+
+const startingPackages = [
+  {
+    tag: "Most Requested",
+    title: "Digital Marketing",
+    price: "₹10,000",
+    period: "/month onwards",
+    items: [
+      "Meta Ads — Instagram & Facebook",
+      "WhatsApp Business setup & outreach",
+      "Google Ads — Search, Display & YouTube",
+      "Social media page management",
+      "Google My Business setup & optimisation",
+      "Monthly performance report",
+    ],
+    footnote: "Best for: local businesses that need awareness + steady leads coming in every month.",
+  },
+  {
+    tag: "Build",
+    title: "App Development",
+    price: "₹30,000",
+    period: "onwards",
+    items: [
+      "React Native — Android & iOS from one codebase",
+      "Python FastAPI backend",
+      "PostgreSQL database",
+      "Hosted on DigitalOcean cloud",
+      "Play Store & App Store submission support",
+    ],
+    footnote: "Best for: businesses that need customers to book, order or track from their phone.",
+  },
+  {
+    tag: "Build",
+    title: "Web Development",
+    price: "₹15,000",
+    period: "onwards",
+    items: [
+      "React JS + JavaScript frontend",
+      "Python FastAPI backend (if dynamic)",
+      "PostgreSQL database (if needed)",
+      "Playwright automated testing before launch",
+      "Cloud hosting & domain setup",
+    ],
+    footnote: "Best for: businesses that need a fast, modern site that actually converts visitors.",
+  },
 ];
 
 const stats = [
@@ -237,7 +328,7 @@ const BtnOutline = ({ href = "#", children, dark, style }) => {
   );
 };
 
-function ServiceCard({ icon, title, desc }) {
+function ServiceCard({ icon, title, desc, who }) {
   const [hov, setHov] = useState(false);
   return (
     <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
@@ -246,10 +337,37 @@ function ServiceCard({ icon, title, desc }) {
         <i className={icon} style={{ color: hov ? "#fff" : C.violet, transition: "color .3s" }} />
       </div>
       <h3 style={{ fontFamily: "'Fraunces',serif", fontSize: 18, fontWeight: 500, color: C.ink, marginBottom: 10 }}>{title}</h3>
-      <p style={{ fontSize: 13, color: C.textMuted, lineHeight: 1.75, marginBottom: 18 }}>{desc}</p>
+      <p style={{ fontSize: 13, color: C.textMuted, lineHeight: 1.75, marginBottom: 14 }}>{desc}</p>
+      {who && (
+        <p style={{ fontSize: 12, color: C.violet, lineHeight: 1.6, marginBottom: 18, fontStyle: "italic" }}>{who}</p>
+      )}
       <a href="#contact" style={{ fontSize: 11, fontWeight: 600, color: C.violet, textDecoration: "none", fontFamily: "'Inter',sans-serif", textTransform: "uppercase", letterSpacing: "1px", display: "inline-flex", alignItems: "center", gap: 6 }}>
         Get Started <i className="fas fa-arrow-right" style={{ fontSize: 10 }} />
       </a>
+    </div>
+  );
+}
+
+function StartCard({ data }) {
+  const [hov, setHov] = useState(false);
+  const { tag, title, price, period, items, footnote } = data;
+  return (
+    <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+      style={{ background: "#fff", border: `1px solid ${hov ? C.violet : "rgba(18,16,28,0.1)"}`, boxShadow: hov ? shadowCard : "none", transition: "all .3s", padding: "32px 28px", display: "flex", flexDirection: "column", height: "100%" }}>
+      <span style={{ display: "inline-block", fontSize: 10, fontWeight: 700, color: C.violet, textTransform: "uppercase", letterSpacing: "1.5px", marginBottom: 14 }}>{tag}</span>
+      <h3 style={{ fontFamily: "'Fraunces',serif", fontSize: 20, fontWeight: 500, color: C.ink, marginBottom: 10 }}>{title}</h3>
+      <div style={{ fontFamily: "'Fraunces',serif", fontSize: 32, fontWeight: 500, color: C.ink, marginBottom: 18 }}>
+        {price}<small style={{ fontSize: 13, fontWeight: 400, color: C.textMuted, fontFamily: "'Inter',sans-serif" }}> {period}</small>
+      </div>
+      <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 11, marginBottom: 20, flexGrow: 1 }}>
+        {items.map((it, i) => (
+          <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: 9, fontSize: 13, color: C.textDark, lineHeight: 1.5 }}>
+            <i className="fas fa-check" style={{ color: C.violet, fontSize: 11, marginTop: 3, flexShrink: 0 }} />{it}
+          </li>
+        ))}
+      </ul>
+      <p style={{ fontSize: 12, color: C.textMuted, fontStyle: "italic", lineHeight: 1.6, marginBottom: 20, paddingTop: 16, borderTop: "1px solid rgba(18,16,28,0.08)" }}>{footnote}</p>
+      <a href="#contact" style={{ display: "block", textAlign: "center", padding: "13px", fontWeight: 600, fontSize: 12, textDecoration: "none", fontFamily: "'Inter',sans-serif", textTransform: "uppercase", letterSpacing: "1px", background: C.violet, color: "#fff" }}>Start This</a>
     </div>
   );
 }
@@ -279,14 +397,36 @@ function PricingCard({ data }) {
   );
 }
 
-function TeamCard({ member, seed, photo }) {
+function TeamAvatar({ seed }) {
+  const hues = [
+    { skin: "#E8B9CE", hair: "#3D2F73", top: "#5B4B9E" },
+    { skin: "#D9A9B0", hair: "#1D1832", top: "#3D2F73" },
+    { skin: "#C98F6E", hair: "#12101C", top: "#7A67C4" },
+    { skin: "#E3B98C", hair: "#2A1F1A", top: "#5B4B9E" },
+  ];
+  const p = hues[seed % hues.length];
+  return (
+    <svg viewBox="0 0 200 220" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+      <rect width="200" height="220" fill="#F1EEF7" />
+      <ellipse cx="100" cy="205" rx="70" ry="14" fill="#E3DAF1" />
+      <path d="M40 220 Q40 150 100 150 Q160 150 160 220 Z" fill={p.top} />
+      <circle cx="100" cy="105" r="48" fill={p.skin} />
+      <path d="M52 100 Q52 45 100 45 Q148 45 148 100 Q140 80 100 78 Q60 80 52 100 Z" fill={p.hair} />
+      <circle cx="80" cy="108" r="4" fill="#2A1420" />
+      <circle cx="120" cy="108" r="4" fill="#2A1420" />
+      <path d="M85 128 Q100 138 115 128" stroke="#2A1420" strokeWidth="3" fill="none" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function TeamCard({ member, seed }) {
   const [hov, setHov] = useState(false);
   return (
     <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       style={{ border: "1px solid rgba(18,16,28,0.08)", boxShadow: hov ? shadowCard : "none", transition: "all .3s" }}>
       <div style={{ position: "relative" }}>
         <div style={{ height: 220, overflow: "hidden" }}>
-          <img src={photo} alt={member.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: hov ? "none" : "grayscale(10%)", transition: "filter .3s" }} />
+          <TeamAvatar seed={seed} />
         </div>
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg,transparent 45%,rgba(18,16,28,0.82) 100%)", opacity: hov ? 1 : 0, transition: "opacity .3s", display: "flex", alignItems: "flex-end", justifyContent: "center", paddingBottom: 18, gap: 10 }}>
           {["fab fa-linkedin-in", "fas fa-envelope"].map((ic, i) => (
@@ -484,11 +624,11 @@ export default function TranovaDigital() {
           </div>
 
           <div className="hero-visual" style={{ position: "relative" }}>
-            <div style={{ border: "1px solid rgba(255,255,255,0.12)" }}>
+            <div style={{ border: "1px solid rgba(255,255,255,0.12)", overflow: "hidden" }}>
               <img
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&h=620&q=80"
-                alt="Team collaborating on a digital product"
-                style={{ display: "block", width: "100%", height: 380, objectFit: "cover" }}
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80"
+                alt="Developers collaborating on a web and mobile project"
+                style={{ width: "100%", height: 380, objectFit: "cover", display: "block", filter: "grayscale(15%) contrast(1.05)" }}
               />
             </div>
             <div style={{ position: "absolute", bottom: -1, left: -1, right: -1, background: C.violet, padding: "16px 22px", display: "flex", alignItems: "center", gap: 14 }}>
@@ -533,11 +673,11 @@ export default function TranovaDigital() {
       <section id="about" className="section-pad" style={{ background: "#fff", padding: "92px 0", width: "100%" }}>
         <div className="about-grid" style={{ maxWidth: 1200, margin: "auto", padding: "0 24px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
           <div className="about-img-col" style={{ position: "relative" }}>
-            <div style={{ border: "1px solid rgba(18,16,28,0.1)" }}>
+            <div style={{ border: "1px solid rgba(18,16,28,0.1)", overflow: "hidden" }}>
               <img
-                src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=900&h=760&q=80"
-                alt="Developers working together on code"
-                style={{ display: "block", width: "100%", height: 420, objectFit: "cover" }}
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
+                alt="Tranova team working on a client project"
+                style={{ width: "100%", height: 420, objectFit: "cover", display: "block" }}
               />
             </div>
             <div style={{ position: "absolute", bottom: -1, right: -1, background: C.ink, color: "#fff", padding: "18px 22px", textAlign: "center" }}>
@@ -570,7 +710,7 @@ export default function TranovaDigital() {
           <div style={{ textAlign: "center", marginBottom: 54 }}>
             <SectionTag>What We Do</SectionTag>
             <SectionTitle>A single, <span style={{ fontStyle: "italic", color: C.violet }}>accountable</span> digital partner</SectionTitle>
-            <p style={{ fontSize: 14, color: C.textMuted, lineHeight: 1.8, maxWidth: 520, margin: "0 auto" }}>Technology and marketing under one roof — no hand-offs between agencies.</p>
+            <p style={{ fontSize: 14, color: C.textMuted, lineHeight: 1.8, maxWidth: 560, margin: "0 auto" }}>Technology and marketing under one roof — no hand-offs between agencies. Each service below explains exactly what you get and who it's for.</p>
           </div>
           <div className="services-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 1, background: "rgba(18,16,28,0.08)" }}>
             {services.map((s,i) => <ServiceCard key={i} {...s} />)}
@@ -599,12 +739,26 @@ export default function TranovaDigital() {
         </div>
       </div>
 
+      {/* ── STARTING PACKAGES (per-service pricing) ── */}
+      <section className="section-pad" style={{ background: "#fff", padding: "92px 0", width: "100%" }}>
+        <div style={{ maxWidth: 1200, margin: "auto", padding: "0 24px" }}>
+          <div style={{ textAlign: "center", marginBottom: 54 }}>
+            <SectionTag>Where To Start</SectionTag>
+            <SectionTitle>Pick a service, see the <span style={{ fontStyle: "italic", color: C.violet }}>starting price</span></SectionTitle>
+            <p style={{ fontSize: 14, color: C.textMuted, lineHeight: 1.8, maxWidth: 560, margin: "0 auto" }}>Digital marketing, app development and web development can be started separately — each with its own scope and starting cost.</p>
+          </div>
+          <div className="starts-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
+            {startingPackages.map((p,i) => <StartCard key={i} data={p} />)}
+          </div>
+        </div>
+      </section>
+
       {/* ── PRICING ── */}
       <section id="pricing" className="section-pad" style={{ background: C.paper, padding: "92px 0", width: "100%" }}>
         <div style={{ maxWidth: 1200, margin: "auto", padding: "0 24px" }}>
           <div style={{ textAlign: "center", marginBottom: 54 }}>
-            <SectionTag>Pricing</SectionTag>
-            <SectionTitle>Transparent <span style={{ fontStyle: "italic", color: C.violet }}>engagement</span> tiers</SectionTitle>
+            <SectionTag>Bundled Pricing</SectionTag>
+            <SectionTitle>Or take a <span style={{ fontStyle: "italic", color: C.violet }}>full package</span></SectionTitle>
             <p style={{ fontSize: 14, color: C.textMuted, lineHeight: 1.8, maxWidth: 520, margin: "0 auto" }}>Every plan pairs development with promotion — one investment, one team.</p>
           </div>
           <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24, alignItems: "stretch" }}>
@@ -621,7 +775,7 @@ export default function TranovaDigital() {
             <SectionTitle>The people behind the work</SectionTitle>
           </div>
           <div className="team-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24 }}>
-            {team.map((m,i) => <TeamCard key={i} member={m} seed={i} photo={teamPhotos[i]} />)}
+            {team.map((m,i) => <TeamCard key={i} member={m} seed={i} />)}
           </div>
         </div>
       </section>
