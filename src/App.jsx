@@ -537,9 +537,9 @@ export default function TranovaDigital() {
           <i className="fas fa-times" />
         </button>
         <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 32 }}>
-          <div style={{ width: 40, height: 40, background: C.violet, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Fraunces',serif", fontSize: 19, fontWeight: 500, color: "#fff" }}>T</div>
+          <div style={{ width: 40, height: 40, background: C.violet, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Fraunces',serif", fontSize: 19, fontWeight: 500, color: "#fff" }}><img src="digitalphoto"/></div>
           <div style={{ lineHeight: 1.1 }}>
-            <div style={{ fontFamily: "'Fraunces',serif", fontSize: 18, fontWeight: 500, color: "#fff" }}>Tranova</div>
+            <div style={{ fontFamily: "'Fraunces',serif", fontSize: 18, fontWeight: 500, color: "#fff" }}>GoDistric</div>
             <div style={{ fontSize: 9, color: "#C9BBF0", textTransform: "uppercase", letterSpacing: 2.5, fontWeight: 600 }}>Digital Technologies</div>
           </div>
         </div>
