@@ -139,7 +139,7 @@ const stats = [
 
 const pricing = [
   {
-    plan: "Starter", price: "₹49k", period: "/project",
+    plan: "Starter", price: "₹9999k", period: "/project",
     desc: "For early-stage teams and MVPs",
     features: [
       { ok: true, text: "Website Development" },
