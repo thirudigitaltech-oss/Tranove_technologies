@@ -263,7 +263,7 @@ function Header({ menuOpen, setMenuOpen }) {
       
           <img src={Godist} style={{ width: 150, height: 60 }} />
          
-        </a>
+       
 
         <nav className="dcs-nav">
           {NAV_LINKS.map((l) => (
