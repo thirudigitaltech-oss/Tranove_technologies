@@ -261,7 +261,7 @@ function Header({ menuOpen, setMenuOpen }) {
     <header className="dcs-header">
       <div className="dcs-container dcs-header-row">
         <a href="#top" >
-          <span className="dcs-logo-mark"><img src={Godist} style={{ width: 150, height: 60 }} /></span>
+          <span ><img src={Godist} style={{ width: 150, height: 60 }} /></span>
          
         </a>
 
