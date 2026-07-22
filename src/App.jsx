@@ -16,7 +16,12 @@ import {
   Star,
   CheckCircle2,
   TrendingUp,
+  Smartphone,
+  Server,
+  TestTube2,
+  Briefcase,
 } from "lucide-react";
+import Asets from "../assets";
 
 /* lucide-react dropped brand/logo icons, so the social marks are
    small inline SVGs instead of a package import that can vanish. */
@@ -77,9 +82,43 @@ const TEAM_PHOTO =
 const NAV_LINKS = [
   { label: "Services", href: "#services" },
   { label: "Process", href: "#process" },
+  { label: "Team", href: "#team" },
   { label: "Pricing", href: "#pricing" },
   { label: "FAQ", href: "#faq" },
 ];
+
+const TEAM = [
+  {
+    name: "Thirupathi Kodaganti",
+    role: "Senior SDET cum Technical Marketing Architect",
+    tag: "Quality & Tech Strategy",
+    icon: TestTube2,
+    tint: "coral",
+  },
+  {
+    name: "Sardar Harpreet Singh",
+    role: "Digital Marketer cum Strategist",
+    tag: "Growth & Campaigns",
+    icon: Megaphone,
+    tint: "teal",
+  },
+  {
+    name: "Rana Prathap Kodaganti",
+    role: "Project Manager",
+    tag: "Delivery & Planning",
+    icon: Briefcase,
+    tint: "purple",
+  },
+];
+
+function initials(name) {
+  return name
+    .split(" ")
+    .filter((w) => w.length > 1)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join("");
+}
 
 const SERVICES = [
   {
@@ -116,6 +155,27 @@ const SERVICES = [
     title: "Creative Services",
     copy:
       "Posters, reels, video editing and motion graphics that keep every channel on-brand.",
+  },
+  {
+    icon: Smartphone,
+    tint: "teal",
+    title: "Mobile App Development",
+    copy:
+      "Cross-platform iOS and Android apps built in React Native from one shared codebase.",
+  },
+  {
+    icon: Server,
+    tint: "purple",
+    title: "Full-Stack & Backend Engineering",
+    copy:
+      "Python FastAPI services on PostgreSQL, powering full-stack web and mobile apps end to end.",
+  },
+  {
+    icon: TestTube2,
+    tint: "yellow",
+    title: "Automation Testing",
+    copy:
+      "Playwright with TypeScript test suites that catch regressions before your users do.",
   },
 ];
 
@@ -201,7 +261,7 @@ function Header({ menuOpen, setMenuOpen }) {
     <header className="dcs-header">
       <div className="dcs-container dcs-header-row">
         <a href="#top" className="dcs-logo">
-          <span className="dcs-logo-mark"><img src="assets/ChatGPT%20Image%20Jul%2022%2C%202026%2C%2005_17_27%20PM.png"/></span>
+          <span className="dcs-logo-mark"><img src=""ChatGPT Image Jul 22, 2026, 05_17_27 PM.png""/></span>
           <span className="dcs-logo-text">
             Digital Campaign <em>Solutions</em>
           </span>
@@ -451,6 +511,30 @@ function WhyUs() {
           <a href="#contact" className="dcs-btn dcs-btn-primary">
             Start a Project <ArrowRight size={16} />
           </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Team() {
+  return (
+    <section className="dcs-section dcs-section-tint" id="team">
+      <div className="dcs-container">
+        <div className="dcs-section-head">
+          <span className="dcs-eyebrow">The people behind it</span>
+          <h2>Meet the Team</h2>
+          <p>Small enough to know your project by name, senior enough to run it end to end.</p>
+        </div>
+
+        <div className="dcs-team-grid">
+          {TEAM.map((m) => (
+            <div key={m.name} className="dcs-team-card">
+              <div className={cx("dcs-team-avatar", `tint-${m.tint}`)}>{initials(m.name)}</div>
+              <h4>{m.name}</h4>
+              <p>{m.role}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -767,6 +851,17 @@ export default function App() {
         .dcs-reasons li { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 14.5px; color: var(--ink); }
         .dcs-reasons svg { color: var(--teal); flex-shrink: 0; }
 
+        /* Team */
+        .dcs-team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+        .dcs-team-card { background: var(--white); border: 1px solid #F0E9E1; border-radius: 22px; padding: 32px 24px; text-align: center; }
+        .dcs-team-avatar { width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; font-family: 'Sora'; font-weight: 700; font-size: 18px; }
+        .dcs-team-avatar.tint-coral { background: #FFE4DA; color: var(--coral-dark); }
+        .dcs-team-avatar.tint-teal { background: #D6F5F0; color: var(--teal); }
+        .dcs-team-avatar.tint-purple { background: #E7E4FB; color: var(--purple); }
+        .dcs-team-avatar.tint-yellow { background: #FFF1D4; color: #C4881A; }
+        .dcs-team-card h4 { font-size: 16.5px; font-weight: 700; margin-bottom: 6px; }
+        .dcs-team-card p { font-size: 13.5px; }
+
         /* Pricing */
         .dcs-pricing-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 44px; flex-wrap: wrap; }
         .dcs-tab { padding: 10px 20px; border-radius: 999px; font-weight: 600; font-size: 14px; background: var(--white); color: var(--ink-soft); border: 1px solid #EDE3DA; }
@@ -811,29 +906,85 @@ export default function App() {
         .dcs-footer-bottom { display: flex; justify-content: space-between; padding: 22px 0; font-size: 12.5px; color: rgba(255,255,255,0.4); flex-wrap: wrap; gap: 8px; }
 
         /* Responsive */
+        html, body { overflow-x: hidden; }
+        .dcs-root { overflow-x: hidden; width: 100%; }
+        .dcs-hero-art, .dcs-hero-blob, .dcs-ring { max-width: 100%; }
+
+        @media (max-width: 1080px) {
+          .dcs-service-grid, .dcs-team-grid { grid-template-columns: repeat(2, 1fr); }
+          .dcs-pricing-grid.is-wide { grid-template-columns: repeat(2, 1fr); }
+        }
+
         @media (max-width: 980px) {
           .dcs-nav, .dcs-header-phone { display: none; }
-          .dcs-menu-btn { display: flex; align-items: center; justify-content: center; }
-          .dcs-mobile-nav.dcs-mobile-nav { display: flex; }
-          .dcs-hero-grid, .dcs-whyus-grid, .dcs-faq-grid { grid-template-columns: 1fr; }
-          .dcs-hero-art { order: -1; height: 360px; }
-          .dcs-service-grid, .dcs-pricing-grid.is-wide { grid-template-columns: repeat(2, 1fr); }
+          .dcs-menu-btn { display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+          .dcs-header-actions .dcs-btn { padding: 9px 16px; font-size: 13.5px; }
+          .dcs-mobile-nav.dcs-mobile-nav { display: flex; flex-direction: column; gap: 4px; padding: 14px 24px 22px; background: var(--cream); border-top: 1px solid rgba(36,28,52,0.06); }
+          .dcs-mobile-nav a { padding: 11px 0; font-weight: 600; }
+          .dcs-mobile-nav .dcs-btn { margin-top: 10px; width: 100%; }
+
+          .dcs-hero-grid, .dcs-whyus-grid, .dcs-faq-grid { grid-template-columns: 1fr; gap: 44px; }
+          .dcs-hero { padding: 48px 0 64px; }
+          .dcs-hero-copy { text-align: center; }
+          .dcs-hero-sub { margin-left: auto; margin-right: auto; }
+          .dcs-hero-cta { justify-content: center; }
+          .dcs-hero-stats { justify-content: center; }
+          .dcs-hero-art { order: -1; height: auto; padding: 60px 30px 40px; }
+          .dcs-hero-blob { width: min(300px, 70vw); height: min(340px, 78vw); }
+          .dcs-ring { width: min(360px, 82vw); height: min(360px, 82vw); }
+
+          .dcs-whyus-art { max-width: 420px; margin: 0 auto; }
+          .dcs-whyus-copy { text-align: center; }
+          .dcs-whyus-copy .dcs-reasons { text-align: left; max-width: 380px; margin-left: auto; margin-right: auto; }
+          .dcs-whyus-card { margin-left: auto; margin-right: 16px; }
+
+          .dcs-faq-head { text-align: center; margin: 0 auto 12px; }
+
           .dcs-process-row { flex-direction: column; align-items: stretch; gap: 26px; }
           .dcs-process-line { display: none; }
           .dcs-footer-grid { grid-template-columns: 1fr 1fr; }
         }
+
         @media (max-width: 640px) {
-          .dcs-header-row { height: 66px; }
-          .dcs-hero { padding: 44px 0 60px; }
-          .dcs-hero-title { font-size: 34px; }
-          .dcs-hero-stats { gap: 22px; flex-wrap: wrap; }
-          .dcs-service-grid, .dcs-pricing-grid, .dcs-pricing-grid.is-wide { grid-template-columns: 1fr; }
-          .dcs-section { padding: 60px 0; }
+          .dcs-container { padding: 0 18px; }
+          .dcs-header-row { height: 64px; }
+          .dcs-header-actions { display: none; }
+          .dcs-hero { padding: 40px 0 52px; }
+          .dcs-hero-title { font-size: 30px; }
+          .dcs-hero-sub { font-size: 15.5px; }
+          .dcs-hero-cta { flex-direction: column; align-items: stretch; }
+          .dcs-hero-cta .dcs-btn { width: 100%; }
+          .dcs-hero-stats { gap: 18px; row-gap: 16px; }
+          .dcs-hero-stats strong { font-size: 22px; }
+          .dcs-float-card { padding: 9px 12px; font-size: 12px; gap: 8px; }
+          .dcs-float-card strong { font-size: 13px; }
+          .dcs-float-top { left: 4px; top: 6px; }
+          .dcs-float-bottom { right: 4px; bottom: 10px; }
+
+          .dcs-section { padding: 52px 0; }
+          .dcs-section-head h2 { font-size: 26px; }
+          .dcs-service-grid, .dcs-team-grid, .dcs-pricing-grid, .dcs-pricing-grid.is-wide { grid-template-columns: 1fr; }
+          .dcs-service-card { padding: 26px 22px; }
+
+          .dcs-whyus-copy h2 { font-size: 26px; }
+          .dcs-whyus-card { margin-left: auto; margin-right: 10px; margin-top: -26px; }
+
+          .dcs-faq-grid { gap: 30px; }
+          .dcs-faq-item button { font-size: 14px; }
+
           .dcs-cta-inner { flex-direction: column; align-items: flex-start; }
-          .dcs-footer-grid { grid-template-columns: 1fr; }
-          .dcs-mobile-nav { flex-direction: column; gap: 4px; padding: 14px 24px 20px; background: var(--cream); border-top: 1px solid rgba(36,28,52,0.06); }
-          .dcs-mobile-nav a { padding: 10px 0; font-weight: 600; }
-          .dcs-mobile-nav .dcs-btn { margin-top: 8px; width: 100%; }
+          .dcs-cta h2 { font-size: 25px; }
+          .dcs-cta-actions { width: 100%; }
+          .dcs-cta-actions .dcs-btn { flex: 1; }
+
+          .dcs-footer-grid { grid-template-columns: 1fr; gap: 32px; }
+          .dcs-footer-bottom { flex-direction: column; text-align: center; gap: 6px; }
+        }
+
+        @media (max-width: 400px) {
+          .dcs-hero-title { font-size: 26px; }
+          .dcs-hero-stats { justify-content: space-between; }
+          .dcs-hero-stats div { flex: 1 1 40%; }
         }
       `}</style>
 
@@ -842,6 +993,7 @@ export default function App() {
       <Services />
       <Process />
       <WhyUs />
+      <Team />
       <Pricing />
       <FAQ />
       <CTA />
