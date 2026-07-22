@@ -21,7 +21,7 @@ import {
   TestTube2,
   Briefcase,
 } from "lucide-react";
-import Asets from "../assets";
+import Godist from "../assets/godist.png";
 
 /* lucide-react dropped brand/logo icons, so the social marks are
    small inline SVGs instead of a package import that can vanish. */
@@ -261,10 +261,8 @@ function Header({ menuOpen, setMenuOpen }) {
     <header className="dcs-header">
       <div className="dcs-container dcs-header-row">
         <a href="#top" className="dcs-logo">
-          <span className="dcs-logo-mark"><img src=""godist""/></span>
-          <span className="dcs-logo-text">
-            Digital Campaign <em>Solutions</em>
-          </span>
+          <span className="dcs-logo-mark"><img src={Godist} alt="Go District" /></span>
+         
         </a>
 
         <nav className="dcs-nav">
