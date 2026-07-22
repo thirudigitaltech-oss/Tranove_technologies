@@ -21,7 +21,7 @@ import {
   TestTube2,
   Briefcase,
 } from "lucide-react";
-import Godist from "../assets/godist.png";
+import Godist from "./assets/godist.png";
 
 /* lucide-react dropped brand/logo icons, so the social marks are
    small inline SVGs instead of a package import that can vanish. */
