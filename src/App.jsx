@@ -261,7 +261,7 @@ function Header({ menuOpen, setMenuOpen }) {
     <header className="dcs-header">
       <div className="dcs-container dcs-header-row">
         <a href="#top" className="dcs-logo">
-          <span className="dcs-logo-mark"><img src=""ChatGPT Image Jul 22, 2026, 05_17_27 PM.png""/></span>
+          <span className="dcs-logo-mark"><img src=""godist""/></span>
           <span className="dcs-logo-text">
             Digital Campaign <em>Solutions</em>
           </span>
