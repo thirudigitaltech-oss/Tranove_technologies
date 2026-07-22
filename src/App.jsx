@@ -260,10 +260,10 @@ function Header({ menuOpen, setMenuOpen }) {
   return (
     <header className="dcs-header">
       <div className="dcs-container dcs-header-row">
-      
-          <img src={Godist} style={{ width: 150, height: 60 }} />
+        <a href="#top" className="dcs-logo">
+          <span className="dcs-logo-mark"><img src={Godist} style={{ width: 150, height: 60 }} /></span>
          
-       
+        </a>
 
         <nav className="dcs-nav">
           {NAV_LINKS.map((l) => (
@@ -640,7 +640,11 @@ function Footer() {
     <footer className="dcs-footer">
       <div className="dcs-container dcs-footer-grid">
         <div className="dcs-footer-brand">
-         <Image source={Godist} style={{ width: 200, height: 200 }} />
+          <div className="dcs-logo">
+            <span className="dcs-logo-mark dcs-logo-mark-light">DC</span>
+            <span className="dcs-logo-text dcs-logo-text-light">
+              Digital Campaign <em>Solutions</em>
+            </span>
           </div>
           <p>
             Websites, digital marketing and Google Ads — planned, built and
